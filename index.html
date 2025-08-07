@@ -112,6 +112,17 @@
 </head>
 <body>
 
+<nav>
+  <ul style="position:sticky;top:0;background:var(--bg);padding:1rem;text-align:center;z-index:1000;margin:0;border-bottom:1px solid #ddd;list-style:none;">
+    <li style="display:inline;margin:0 1rem;"><a href="#beschreibung">Beschreibung</a></li>
+    <li style="display:inline;margin:0 1rem;"><a href="#aussenansicht">Aussenansicht</a></li>
+    <li style="display:inline;margin:0 1rem;"><a href="#innen-eg">Erdgeschoss</a></li>
+    <li style="display:inline;margin:0 1rem;"><a href="#innen-og">Obergeschoss</a></li>
+    <li style="display:inline;margin:0 1rem;"><a href="#lage">Lage</a></li>
+    <li style="display:inline;margin:0 1rem;"><a href="#kontakt">Kontakt</a></li>
+  </ul>
+</nav>
+
 <header>
   <h1>Heidenhaus aus dem Jahr 1448 in Mühlebach/Ernen</h1>
   <p>Renoviertes Ferienhaus im ältesten Holz-Dorfkern der Schweiz</p>
@@ -119,7 +130,7 @@
 
 <div class="container">
 
-  <h2>Beschreibung</h2>
+  <h2 id="beschreibung">Beschreibung</h2>
   <p>Das <strong>Heidenhaus 1448</strong> verbindet historischen Charme mit modernem Komfort. Es liegt mitten im ruhigen Dorfkern von Mühlebach im Wallis – dem ältesten Holzbaubereich der Schweiz – und wurde stilvoll renoviert.</p>
 
   <ul>
@@ -131,7 +142,7 @@
     <li><strong>Keller:</strong> Waschmaschine, Holzlager, Platz für Ski & Ausrüstung.</li>
     <li><strong>Heizung:</strong> Elektroheizung in allen Zimmern + Kachelofen.</li>
   </ul>
-<h2>Aussenansicht</h2>
+<h2 id="aussenansicht">Aussenansicht</h2>
   <figure>
   <img src="img/DSCF2525.jpg" alt="Aussenansicht mit Sitzplatz und Hausfassade">
   <figcaption>Aussenansicht mit Sitzplatz</figcaption>
@@ -141,7 +152,7 @@
   <figcaption>Heidenhaus von der Strasse mit Nachbarhäusern</figcaption>
 </figure>
 
-  <h2>Innenbereich (Erdgeschoss)</h2>
+  <h2 id="innen-eg">Innenbereich (Erdgeschoss)</h2>
   <figure>
   <img src="img/DSCF2545.jpg" alt="Grünes Sofa mit Tisch und Bücherregal">
   <figcaption>Wohnzimmer mit Sofa</figcaption>
@@ -175,7 +186,7 @@
   <figcaption>WC mit Fenster (Erdgeschoss)</figcaption>
 </figure>
 
-  <h2>Innenbereich (Obergeschoss)</h2>
+  <h2 id="innen-og">Innenbereich (Obergeschoss)</h2>
   <figure>
   <img src="img/DSCF2515.jpg" alt="Schlafzimmer mit zwei Betten">
   <figcaption>Schlafzimmer mit zwei Betten</figcaption>
@@ -213,7 +224,7 @@
   <figcaption>Waschbecken und Spiegel</figcaption>
 </figure>
 
-  <h2>Lage & Umgebung</h2>
+  <h2 id="lage">Lage & Umgebung</h2>
   <p>Das Haus liegt direkt an einem Wander- und Radweg – ruhig und naturverbunden:</p>
 
   <ul>
@@ -236,12 +247,12 @@
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-      const map = L.map('map').setView([46.39106, 8.12842], 17);
+      const map = L.map('map').setView([46.39895, 8.13994], 18);
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       }).addTo(map);
-      L.marker([46.39106, 8.12842]).addTo(map)
+      L.marker([46.39895, 8.13994]).addTo(map)
         .bindPopup('Heidenhaus 1448<br>Schinnerstrasse 54, Mühlebach')
         .openPopup();
     });
@@ -249,7 +260,7 @@
 
 
 
-  <h2>Kontakt</h2>
+  <h2 id="kontakt">Kontakt</h2>
   <p>Bei Interesse oder Fragen:</p>
   <p><strong>Sarah Isler</strong><br>
   <a href="mailto:sarah@isler.org">sarah@isler.org</a></p>

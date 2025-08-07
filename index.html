@@ -108,7 +108,18 @@
     border-radius: 8px;
     box-shadow: 0 6px 12px rgba(0,0,0,0.07);
   }
+  figure {
+    margin-bottom: 1.2rem;
+  }
+
+  figcaption {
+    margin-top: 0.4rem;
+    font-size: 0.95rem;
+    color: var(--muted);
+    text-align: center;
+  }
 </style>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
 <body>
 
@@ -131,7 +142,7 @@
 <div class="container">
 
   <h2 id="beschreibung">Beschreibung</h2>
-  <p>Das <strong>Heidenhaus 1448</strong> verbindet historischen Charme mit modernem Komfort. Es liegt mitten im ruhigen Dorfkern von Mühlebach im Wallis – dem ältesten Holzbaubereich der Schweiz – und wurde stilvoll renoviert.</p>
+  <p>Das <strong>Heidenhaus 1448</strong> verbindet historischen Charme mit modernem Komfort. Es liegt mitten im ruhigen Dorfkern von Mühlebach im Wallis – dem ältesten Dorfkern der Schweiz in Holzbauweise – und wurde stilvoll renoviert.</p>
 
   <ul>
     <li><strong>Wohnküche:</strong> Induktionsherd, versenkbarem Dampfabzug, Kaffeemaschine, Fondue-/Raclette-Set.</li>
@@ -241,22 +252,20 @@
     <li>Modernes Bad mit Dusche und Badewanne</li>
     <li>Parkplätze im Dorf (max. 5 Gehminuten entfernt)</li>
   </ul><h2>Karte</h2>
-  <div id="map"></div>
-
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<div id="map"></div>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const map = L.map('map').setView([46.39895, 8.13994], 18);
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-      }).addTo(map);
-      L.marker([46.39895, 8.13994]).addTo(map)
-        .bindPopup('Heidenhaus 1448<br>Schinnerstrasse 54, Mühlebach')
-        .openPopup();
-    });
-  </script>
+<script>
+  window.addEventListener('load', function () {
+    const map = L.map('map').setView([46.39895, 8.13994], 19);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 20,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+    L.marker([46.39895, 8.13994]).addTo(map)
+      .bindPopup('Heidenhaus 1448<br>Schinnerstrasse 54, Mühlebach')
+      .openPopup();
+  });
+</script>
 
 
 

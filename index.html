@@ -101,7 +101,14 @@
         font-size: 16px;
       }
     }
-  </style>
+    #map {
+    width: 100%;
+    height: 400px;
+    margin-top: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.07);
+  }
+</style>
 </head>
 <body>
 
@@ -125,29 +132,86 @@
     <li><strong>Heizung:</strong> Elektroheizung in allen Zimmern + Kachelofen.</li>
   </ul>
 <h2>Aussenansicht</h2>
+  <figure>
   <img src="img/DSCF2525.jpg" alt="Aussenansicht mit Sitzplatz und Hausfassade">
+  <figcaption>Aussenansicht mit Sitzplatz</figcaption>
+</figure>
+  <figure>
   <img src="img/DSCF2533.jpg" alt="Heidenhaus von der Strasse mit Nachbarhäusern">
+  <figcaption>Heidenhaus von der Strasse mit Nachbarhäusern</figcaption>
+</figure>
 
   <h2>Innenbereich (Erdgeschoss)</h2>
+  <figure>
   <img src="img/DSCF2545.jpg" alt="Grünes Sofa mit Tisch und Bücherregal">
+  <figcaption>Wohnzimmer mit Sofa</figcaption>
+</figure>
+  <figure>
   <img src="img/DSCF2546.jpg" alt="Sessel und Kachelofen">
+  <figcaption>Wohnzimmer mit Kachelofen</figcaption>
+</figure>
+  <figure>
   <img src="img/DSCF2547.jpg" alt="TV-Ecke mit Fenster">
+  <figcaption>Wohnzimmer it TV-Ecke</figcaption>
+</figure>
+  <figure>
   <img src="img/DSCF2548.jpg" alt="TV-Ecke mit Schrank">
+  <figcaption>TV-Ecke mit Schrank</figcaption>
+</figure>
+  <figure>
   <img src="img/DSCF2549.jpg" alt="Moderne Küche mit Kochinsel">
+  <figcaption>Küche mit Kochinsel</figcaption>
+</figure>
+  <figure>
   <img src="img/DSCF2552.jpg" alt="Küche mit Kaffeemaschine">
+  <figcaption>Küche mit Kaffeemaschine</figcaption>
+</figure>
+  <figure>
   <img src="img/DSCF2565.jpg" alt="Essbereich mit Tisch und Holzbank">
+  <figcaption>Essbereich mit Tisch und Holzbank</figcaption>
+</figure>
+  <figure>
   <img src="img/DSCF2521.jpg" alt="WC mit Fenster (EG)">
+  <figcaption>WC mit Fenster (Erdgeschoss)</figcaption>
+</figure>
 
   <h2>Innenbereich (Obergeschoss)</h2>
+  <figure>
   <img src="img/DSCF2515.jpg" alt="Schlafzimmer mit zwei Betten">
+  <figcaption>Schlafzimmer mit zwei Betten</figcaption>
+</figure>
+  <figure>
   <img src="img/DSCF2516.jpg" alt="Schlafzimmer mit Kommode">
+  <figcaption>Schlafzimmer mit Kommode</figcaption>
+</figure>
+  <figure>
   <img src="img/DSCF2517.jpg" alt="Einzelbett mit Fensterblick">
+  <figcaption>Doppelbett mit Fensterblick</figcaption>
+</figure>
+  <figure>
   <img src="img/DSCF2518.jpg" alt="Holzwand mit Wäscheständer">
+  <figcaption>Holzwand mit Kleiderständer</figcaption>
+</figure>
+  <figure>
   <img src="img/DSCF2519.jpg" alt="Kommode im Vorraum">
+  <figcaption>Kommode im Vorraum</figcaption>
+</figure>
+  <figure>
   <img src="img/DSCF2520.jpg" alt="Moderne Dusche mit Steinwand">
-  <img src="img/DSCF2522.jpg" alt="Design-Badewanne">
-  <img src="img/DSCF2523.jpg" alt="Übersicht Badezimmer mit Badewanne">
+  <figcaption>Dusche</figcaption>
+</figure>
+  <figure>
+  <img src="img/DSCF2522.jpg" alt="Badewanne mit Holzrückwand">
+  <figcaption>Badewanne </figcaption>
+</figure>
+  <figure>
+  <img src="img/DSCF2523.jpg" alt="Badezimmer mit Badewanne">
+  <figcaption>Badezimmer</figcaption>
+</figure>
+  <figure>
   <img src="img/DSCF2524.jpg" alt="Waschbecken und Spiegel">
+  <figcaption>Waschbecken und Spiegel</figcaption>
+</figure>
 
   <h2>Lage & Umgebung</h2>
   <p>Das Haus liegt direkt an einem Wander- und Radweg – ruhig und naturverbunden:</p>
@@ -165,7 +229,25 @@
     <li>Gratis WLAN im ganzen Haus</li>
     <li>Modernes Bad mit Dusche und Badewanne</li>
     <li>Parkplätze im Dorf (max. 5 Gehminuten entfernt)</li>
-  </ul>
+  </ul><h2>Karte</h2>
+  <div id="map"></div>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const map = L.map('map').setView([46.39106, 8.12842], 17);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      }).addTo(map);
+      L.marker([46.39106, 8.12842]).addTo(map)
+        .bindPopup('Heidenhaus 1448<br>Schinnerstrasse 54, Mühlebach')
+        .openPopup();
+    });
+  </script>
+
+
 
   <h2>Kontakt</h2>
   <p>Bei Interesse oder Fragen:</p>

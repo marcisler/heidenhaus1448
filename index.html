@@ -68,7 +68,7 @@
     img {
       width: 100%;
       height: auto;
-      margin: 1.5rem 0;
+      margin: 0;
       border-radius: 8px;
       box-shadow: 0 6px 12px rgba(0,0,0,0.07);
     }
@@ -101,37 +101,50 @@
         font-size: 16px;
       }
     }
+
     #map {
-    width: 100%;
-    height: 400px;
-    margin-top: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 6px 12px rgba(0,0,0,0.07);
-  }
-  figure {
-    margin-bottom: 1.2rem;
+      width: 100%;
+      height: 400px;
+      margin-top: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.07);
+    }
+
+    figure {
+      margin-bottom: 1.2rem;
+    }
+
+    figcaption {
+    margin-top: 0.2rem;
+      margin-top: 0.4rem;
+      font-size: 0.95rem;
+      color: var(--muted);
+      text-align: center;
+    }
+    nav a {
+    color: var(--accent);
+    font-weight: 500;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
   }
 
-  figcaption {
-    margin-top: 0.4rem;
-    font-size: 0.95rem;
-    color: var(--muted);
-    text-align: center;
+  nav a:hover {
+    text-decoration: underline;
   }
 </style>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
 <body>
 
-<nav>
-  <ul style="position:sticky;top:0;background:var(--bg);padding:1rem;text-align:center;z-index:1000;margin:0;border-bottom:1px solid #ddd;list-style:none;">
-    <li style="display:inline;margin:0 1rem;"><a href="#beschreibung">Beschreibung</a></li>
-    <li style="display:inline;margin:0 1rem;"><a href="#aussenansicht">Aussenansicht</a></li>
-    <li style="display:inline;margin:0 1rem;"><a href="#innen-eg">Erdgeschoss</a></li>
-    <li style="display:inline;margin:0 1rem;"><a href="#innen-og">Obergeschoss</a></li>
-    <li style="display:inline;margin:0 1rem;"><a href="#lage">Lage</a></li>
-    <li style="display:inline;margin:0 1rem;"><a href="#kontakt">Kontakt</a></li>
-  </ul>
+<nav style="position: sticky; top: 0; background: var(--highlight); padding: 0.5rem 1rem; border-bottom: 1px solid #ddd; z-index: 1000;">
+  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;">
+    <a href="#beschreibung">Beschreibung</a>
+    <a href="#aussenansicht">Aussen</a>
+    <a href="#innen-eg">EG</a>
+    <a href="#innen-og">OG</a>
+    <a href="#lage">Lage</a>
+    <a href="#kontakt">Kontakt</a>
+  </div>
 </nav>
 
 <header>
@@ -140,7 +153,6 @@
 </header>
 
 <div class="container">
-
   <h2 id="beschreibung">Beschreibung</h2>
   <p>Das <strong>Heidenhaus 1448</strong> verbindet historischen Charme mit modernem Komfort. Es liegt mitten im ruhigen Dorfkern von Mühlebach im Wallis – dem ältesten Dorfkern der Schweiz in Holzbauweise – und wurde stilvoll renoviert.</p>
 
@@ -153,108 +165,54 @@
     <li><strong>Keller:</strong> Waschmaschine, Holzlager, Platz für Ski & Ausrüstung.</li>
     <li><strong>Heizung:</strong> Elektroheizung in allen Zimmern + Kachelofen.</li>
   </ul>
-<h2 id="aussenansicht">Aussenansicht</h2>
-  <figure>
-  <img src="img/DSCF2525.jpg" alt="Aussenansicht mit Sitzplatz und Hausfassade">
-  <figcaption>Aussenansicht mit Sitzplatz</figcaption>
-</figure>
-  <figure>
-  <img src="img/DSCF2533.jpg" alt="Heidenhaus von der Strasse mit Nachbarhäusern">
-  <figcaption>Heidenhaus von der Strasse mit Nachbarhäusern</figcaption>
-</figure>
+
+  <h2 id="aussenansicht">Aussenansicht</h2>
+  <figure><img src="img/DSCF2525.jpg" alt="Aussenansicht mit Sitzplatz"><figcaption>Heidenhaus von der Strasse mit Nachbarhäusern</figcaption></figure>
+  <figure><img src="img/DSCF2533.jpg" alt="Heidenhaus von der Strasse"><figcaption>Aussenansicht mit Sitzplatz</figcaption></figure>
 
   <h2 id="innen-eg">Innenbereich (Erdgeschoss)</h2>
-  <figure>
-  <img src="img/DSCF2545.jpg" alt="Grünes Sofa mit Tisch und Bücherregal">
-  <figcaption>Wohnzimmer mit Sofa</figcaption>
-</figure>
-  <figure>
-  <img src="img/DSCF2546.jpg" alt="Sessel und Kachelofen">
-  <figcaption>Wohnzimmer mit Kachelofen</figcaption>
-</figure>
-  <figure>
-  <img src="img/DSCF2547.jpg" alt="TV-Ecke mit Fenster">
-  <figcaption>Wohnzimmer it TV-Ecke</figcaption>
-</figure>
-  <figure>
-  <img src="img/DSCF2548.jpg" alt="TV-Ecke mit Schrank">
-  <figcaption>TV-Ecke mit Schrank</figcaption>
-</figure>
-  <figure>
-  <img src="img/DSCF2549.jpg" alt="Moderne Küche mit Kochinsel">
-  <figcaption>Küche mit Kochinsel</figcaption>
-</figure>
-  <figure>
-  <img src="img/DSCF2552.jpg" alt="Küche mit Kaffeemaschine">
-  <figcaption>Küche mit Kaffeemaschine</figcaption>
-</figure>
-  <figure>
-  <img src="img/DSCF2565.jpg" alt="Essbereich mit Tisch und Holzbank">
-  <figcaption>Essbereich mit Tisch und Holzbank</figcaption>
-</figure>
-  <figure>
-  <img src="img/DSCF2521.jpg" alt="WC mit Fenster (EG)">
-  <figcaption>WC mit Fenster (Erdgeschoss)</figcaption>
-</figure>
+  <figure><img src="img/DSCF2545.jpg" alt="Wohnzimmer"><figcaption>Wohnzimmer mit Sofa</figcaption></figure>
+  <figure><img src="img/DSCF2546.jpg" alt="Kachelofen"><figcaption>Wohnzimmer mit Kachelofen</figcaption></figure>
+  <figure><img src="img/DSCF2547.jpg" alt="TV-Ecke"><figcaption>Wohnzimmer mit TV-Ecke</figcaption></figure>
+  <figure><img src="img/DSCF2548.jpg" alt="TV-Schrank"><figcaption>TV-Ecke mit Schrank</figcaption></figure>
+  <figure><img src="img/DSCF2549.jpg" alt="Küche"><figcaption>Küche mit Kochinsel</figcaption></figure>
+  <figure><img src="img/DSCF2552.jpg" alt="Kaffeemaschine"><figcaption>Küche mit Kaffeemaschine</figcaption></figure>
+  <figure><img src="img/DSCF2565.jpg" alt="Essbereich"><figcaption>Essbereich mit Tisch und Holzbank</figcaption></figure>
+  <figure><img src="img/DSCF2521.jpg" alt="WC Erdgeschoss"><figcaption>WC mit Fenster (Erdgeschoss)</figcaption></figure>
 
   <h2 id="innen-og">Innenbereich (Obergeschoss)</h2>
-  <figure>
-  <img src="img/DSCF2515.jpg" alt="Schlafzimmer mit zwei Betten">
-  <figcaption>Schlafzimmer mit zwei Betten</figcaption>
-</figure>
-  <figure>
-  <img src="img/DSCF2516.jpg" alt="Schlafzimmer mit Kommode">
-  <figcaption>Schlafzimmer mit Kommode</figcaption>
-</figure>
-  <figure>
-  <img src="img/DSCF2517.jpg" alt="Einzelbett mit Fensterblick">
-  <figcaption>Doppelbett mit Fensterblick</figcaption>
-</figure>
-  <figure>
-  <img src="img/DSCF2518.jpg" alt="Holzwand mit Wäscheständer">
-  <figcaption>Holzwand mit Kleiderständer</figcaption>
-</figure>
-  <figure>
-  <img src="img/DSCF2519.jpg" alt="Kommode im Vorraum">
-  <figcaption>Kommode im Vorraum</figcaption>
-</figure>
-  <figure>
-  <img src="img/DSCF2520.jpg" alt="Moderne Dusche mit Steinwand">
-  <figcaption>Dusche</figcaption>
-</figure>
-  <figure>
-  <img src="img/DSCF2522.jpg" alt="Badewanne mit Holzrückwand">
-  <figcaption>Badewanne </figcaption>
-</figure>
-  <figure>
-  <img src="img/DSCF2523.jpg" alt="Badezimmer mit Badewanne">
-  <figcaption>Badezimmer</figcaption>
-</figure>
-  <figure>
-  <img src="img/DSCF2524.jpg" alt="Waschbecken und Spiegel">
-  <figcaption>Waschbecken und Spiegel</figcaption>
-</figure>
+  <figure><img src="img/DSCF2515.jpg" alt="Schlafzimmer"><figcaption>Schlafzimmer mit zwei Betten</figcaption></figure>
+  <figure><img src="img/DSCF2516.jpg" alt="Kommode"><figcaption>Andere Sicht des Schlafzimmers mit zwei Betten</figcaption></figure>
+  <figure><img src="img/DSCF2517.jpg" alt="Doppelbett"><figcaption>Doppelbett mit Fensterblick</figcaption></figure>
+  <figure><img src="img/DSCF2518.jpg" alt="Wäscheständer"><figcaption>Andere Sicht Schlafzimmer mit Doppelbett</figcaption></figure>
+  <figure><img src="img/DSCF2519.jpg" alt="Vorraum"><figcaption>Vorraum mit Kommode</figcaption></figure>
+  <figure><img src="img/DSCF2520.jpg" alt="Dusche"><figcaption>Dusche</figcaption></figure>
+  <figure><img src="img/DSCF2522.jpg" alt="Badewanne"><figcaption>Badewanne</figcaption></figure>
+  <figure><img src="img/DSCF2523.jpg" alt="Badezimmer"><figcaption>Badezimmer</figcaption></figure>
+  <figure><img src="img/DSCF2524.jpg" alt="Waschbecken"><figcaption>Waschbecken und Spiegel</figcaption></figure>
 
   <h2 id="lage">Lage & Umgebung</h2>
   <p>Das Haus liegt direkt an einem Wander- und Radweg – ruhig und naturverbunden:</p>
-
   <ul>
     <li>2 Minuten zur Dorfkapelle</li>
-    <li>5 Minuten zur Bushaltestelle (im Winter Skibus)</li>
+    <li>5 Minuten zur Bushaltestelle, im Winter Skibus zur Bergbahn in Fiesch</li>
     <li>10 Minuten zur Hängebrücke Gomsbridge</li>
-    <li>25 Minuten zu Fuss zur Bahnstation „Fürgangen-Bellwald“ (Anschluss nach Brig)</li>
+    <li>20 Minuten zu Fuss zur Bahnstation „Fürgangen-Bellwald“ (Anschluss nach Brig)</li>
     <li>20 Minuten zu Fuss nach Ernen (Volg, Bioladen), 5 Minuten mit dem Auto</li>
   </ul>
 
-  <h2>Weitere Infos</h2>
-  <ul>
-    <li>Gratis WLAN im ganzen Haus</li>
-    <li>Modernes Bad mit Dusche und Badewanne</li>
-    <li>Parkplätze im Dorf (max. 5 Gehminuten entfernt)</li>
-  </ul><h2>Karte</h2>
-<iframe src="https://map.geo.admin.ch/#/embed?lang=de&center=2655281.71,1139854.95&z=10&topic=ech&crosshair=marker&layers=ch.swisstopo.zeitreihen@year=1864,f;ch.bfs.gebaeude_wohnungs_register,f;ch.bav.haltestellen-oev,f;ch.swisstopo.swisstlm3d-wanderwege,f;ch.vbs.schiessanzeigen,f;ch.astra.wanderland-sperrungen_umleitungen,f&bgLayer=ch.swisstopo.pixelkarte-farbe" style="border: 0;width: 600px;height: 450px;max-width: 100%;max-height: 100%;" allow="geolocation"></iframe>
+  <h2>Karte</h2>
+  <iframe src="https://map.geo.admin.ch/#/embed?lang=de&center=2655281.71,1139854.95&z=9&topic=ech&crosshair=marker&layers=ch.swisstopo.zeitreihen@year=1864,f;ch.bfs.gebaeude_wohnungs_register,f;ch.bav.haltestellen-oev,f;ch.swisstopo.swisstlm3d-wanderwege,f;ch.vbs.schiessanzeigen,f;ch.astra.wanderland-sperrungen_umleitungen,f&bgLayer=ch.swisstopo.pixelkarte-farbe" style="border: 0;width: 100%;height: 400px;max-width: 100%;max-height: 100%;border-radius: 8px;box-shadow: 0 6px 12px rgba(0,0,0,0.07);" allow="geolocation"></iframe>
 
   <h2 id="kontakt">Kontakt</h2>
   <p>Bei Interesse oder Fragen:</p>
   <p><strong>Sarah Isler</strong><br>
-  <a href="mailto:sarah@isler.org">sarah@isler.org</a></p>
+    <a href="mailto:sarah@isler.org">sarah@isler.org</a></p>
+</div>
+
+<footer>
+  &copy; 2025 Heidenhaus 1448 – Alle Rechte vorbehalten
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Premium Digital Workshop – Direct Impact</title>
+  <style>
+    :root{
+      --bg1:#f1f5f9;
+      --bg2:#ffffff;
+      --text:#0f172a;
+      --muted:#64748b;
+      --line:#e2e8f0;
+      --red:#dc2626;
+      --red-soft:#fef2f2;
+      --dark:#0f172a;
+      --card:#ffffff;
+      --shadow:0 12px 32px rgba(15,23,42,.08);
+      --radius:24px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: linear-gradient(to bottom, var(--bg1), var(--bg2), var(--bg1));
+      color:var(--text);
+    }
+    .wrap{max-width:1280px;margin:0 auto;padding:24px}
+    .header{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:24px}
+    .eyebrow{font-size:12px;letter-spacing:.25em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+    h1{font-size:clamp(2rem,5vw,4rem);margin:0 0 8px 0;line-height:1}
+    h2,h3,p{margin-top:0}
+    .lead{max-width:920px;color:var(--muted);font-size:1.08rem;line-height:1.7;margin-bottom:0}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+    .grid-main{display:grid;grid-template-columns:.92fr 1.08fr;gap:24px}
+    .card{
+      background:var(--card);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      border:1px solid rgba(226,232,240,.85);
+    }
+    .card-inner{padding:28px}
+    .principle-icon{
+      width:48px;height:48px;border-radius:18px;background:var(--red-soft);
+      display:inline-flex;align-items:center;justify-content:center;
+      color:var(--red);font-size:24px;margin-bottom:14px
+    }
+    .principle-title{font-size:1.3rem;margin-bottom:8px}
+    .principle-short{font-weight:700;margin-bottom:10px}
+    .muted{color:var(--muted);line-height:1.7}
+    .score-row{display:flex;justify-content:space-between;align-items:center;gap:12px}
+    .badge{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:8px 12px;border-radius:14px;background:#f8fafc;
+      border:1px solid var(--line);font-weight:700;font-size:.95rem
+    }
+    .progress{
+      width:100%;height:12px;background:#e5e7eb;border-radius:999px;overflow:hidden;margin:18px 0 14px
+    }
+    .progress-bar{height:100%;width:0;background:var(--red);transition:width .25s ease}
+    .small-box{
+      background:#f8fafc;border-radius:18px;padding:16px;font-size:.95rem;color:#475569;line-height:1.7;margin-top:20px
+    }
+    .scenario-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:12px}
+    .scenario-label{font-size:.95rem;color:var(--muted);margin-bottom:6px}
+    .scenario-setup{font-size:1.1rem;line-height:1.8;color:#334155;margin:0 0 20px 0}
+    .btn{
+      border:1px solid var(--line);background:#fff;color:var(--text);
+      border-radius:16px;padding:12px 16px;font-weight:700;cursor:pointer;
+      transition:.2s ease;display:inline-flex;align-items:center;gap:8px
+    }
+    .btn:hover{transform:translateY(-1px);box-shadow:var(--shadow)}
+    .btn-primary{background:var(--red);color:#fff;border-color:var(--red)}
+    .btn:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:none}
+    .options{display:grid;gap:12px}
+    .option{
+      width:100%;text-align:left;background:#fff;border:1px solid var(--line);
+      border-radius:18px;padding:16px;cursor:pointer;transition:.2s ease
+    }
+    .option:hover{border-color:#cbd5e1;box-shadow:0 8px 20px rgba(15,23,42,.05)}
+    .option.active{border-color:#fca5a5;background:var(--red-soft)}
+    .option-title{font-weight:700}
+    .impact-pill{
+      display:inline-flex;margin-top:12px;background:#fff;border-radius:999px;
+      padding:6px 12px;font-size:.9rem;font-weight:800;color:var(--red);
+      border:1px solid #fecaca
+    }
+    .feedback{margin-top:10px;color:#475569;line-height:1.7}
+    .footer-box{
+      margin-top:20px;background:var(--dark);color:#fff;border-radius:24px;padding:22px;display:none
+    }
+    .footer-box.show{display:block}
+    .footer-box .eyebrow{color:#cbd5e1;margin-bottom:10px}
+    .slider-box{background:#f8fafc;border-radius:18px;padding:22px;margin-top:16px}
+    .scale{display:flex;justify-content:space-between;font-size:.95rem;color:var(--muted);margin-bottom:12px}
+    input[type=range]{width:100%}
+    .slider-value{font-size:2.3rem;font-weight:800;margin-top:16px}
+    .slider-label{font-size:1.15rem;color:#334155;margin-top:6px}
+    .check-item{border:1px solid var(--line);border-radius:18px;padding:16px;margin-bottom:14px}
+    .check-q{font-weight:700}
+    .check-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+    .btn-small{padding:10px 14px;border-radius:14px}
+    .btn-on{background:var(--red);color:#fff;border-color:var(--red)}
+    .recommendation{margin-top:12px;font-size:.95rem;color:#475569}
+    .signal{
+      margin-top:18px;background:var(--red-soft);padding:18px;border-radius:18px
+    }
+    .signal .label{font-size:.9rem;color:#b91c1c}
+    .signal .big{font-size:1.8rem;font-weight:800;color:#7f1d1d;margin-top:2px}
+    .signal p{color:#7f1d1d;line-height:1.7;margin:.5rem 0 0 0}
+    .outro .eyebrow{color:var(--muted)}
+    .outro h2{font-size:clamp(1.7rem,3vw,2.7rem);line-height:1.2;margin:6px 0 10px}
+    .outro .highlight{font-size:clamp(1.4rem,2.4vw,2.2rem);color:var(--red);font-weight:800;line-height:1.3}
+    @media (max-width: 980px){
+      .grid-3,.grid-main,.grid-2{grid-template-columns:1fr}
+      .wrap{padding:16px}
+      .card-inner{padding:22px}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="header">
+      <div>
+        <div class="eyebrow">PREMIUM DIGITAL WORKSHOP</div>
+        <h1>Direct Impact</h1>
+        <p class="lead">Führung in den nächsten 18 Monaten heisst: Wirkung jetzt. Nicht beschäftigen. Nicht vertagen. Nicht verkomplizieren.</p>
+      </div>
+    </div>
+
+    <section class="grid-3" id="principles"></section>
+
+    <section class="grid-main" style="margin-top:24px">
+      <div class="card">
+        <div class="card-inner">
+          <div class="score-row">
+            <h3>Impact Score</h3>
+            <div class="badge"><span id="scoreValue">0</span> / 100</div>
+          </div>
+          <div class="progress"><div class="progress-bar" id="progressBar"></div></div>
+          <p class="muted">Nutze diesen Teil live mit dem Raum: Lass die Gruppe abstimmen, klicke die Option an und diskutiere direkt, warum sie stark oder schwach auf unmittelbare Wirkung einzahlt.</p>
+          <div class="small-box">
+            <div style="font-weight:700;color:#0f172a">Faustregel</div>
+            <div>Hoher Score = schnell, konkret, verantwortlich, einfach, fokussiert.</div>
+            <div>Niedriger Score = vertagt, verwässert, verwaltet, verkompliziert.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-inner">
+          <div class="scenario-top">
+            <div>
+              <div class="scenario-label" id="scenarioCount"></div>
+              <h3 id="scenarioTitle" style="font-size:1.7rem"></h3>
+            </div>
+            <button class="btn" id="resetBtn">↺ Reset</button>
+          </div>
+
+          <p class="scenario-setup" id="scenarioSetup"></p>
+          <div class="options" id="options"></div>
+
+          <div style="margin-top:20px;display:flex;gap:12px;flex-wrap:wrap">
+            <button class="btn btn-primary" id="nextBtn" disabled>Nächstes Szenario →</button>
+          </div>
+
+          <div class="footer-box" id="finalBox">
+            <div class="eyebrow">Fazit</div>
+            <div style="font-size:1.7rem;font-weight:800">Direct Impact ist ein Führungsfilter.</div>
+            <p style="line-height:1.8;color:#e2e8f0;margin:.8rem 0 0 0">
+              Er zwingt uns, jede Initiative auf unmittelbare Wirkung zu prüfen: Was erzeugt jetzt Wert? Was beschleunigt Resultate? Was können wir vereinfachen, fokussieren oder sofort umsetzen?
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid-2" style="margin-top:24px">
+      <div class="card">
+        <div class="card-inner">
+          <h3 style="font-size:1.4rem">Live-Moment: 80/20 statt Perfektion</h3>
+          <p class="muted" style="margin-top:12px">Nutze den Slider im Workshop für eine spontane Diskussion: Wo liegt euer Team heute zwischen Perfektion und Wirkung?</p>
+          <div class="slider-box">
+            <div class="scale"><span>Perfektion zuerst</span><span>Wirkung jetzt</span></div>
+            <input id="rangeInput" type="range" min="0" max="100" step="1" value="55" />
+            <div class="slider-value" id="rangeValue">55%</div>
+            <div class="slider-label" id="rangeLabel">Solide, aber noch zu vorsichtig</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-inner">
+          <h3 style="font-size:1.4rem">Der 60-Sekunden-Impact-Check</h3>
+          <div id="checks" style="margin-top:16px"></div>
+          <div class="signal">
+            <div class="label">Signal</div>
+            <div class="big"><span id="yesCount">0</span> von 4 Kriterien erfüllt</div>
+            <p>Je höher der Wert, desto eher zahlt das Thema direkt auf den Leadership-Grundsatz ein. Wenige Ja-Antworten sind ein klares Zeichen: vereinfachen, fokussieren oder stoppen.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card outro" style="margin-top:24px">
+      <div class="card-inner">
+        <div class="eyebrow">Schlussbild</div>
+        <h2>Die eigentliche Führungsfrage lautet nicht: Was tun wir alles?</h2>
+        <div class="highlight">Sondern: Was wirkt jetzt wirklich?</div>
+        <p class="lead" style="margin-top:14px">Direct Impact macht Führung konkret. Es setzt einen Filter vor Projekte, Meetings, Kommunikation und Prioritäten. Alles, was direkte Wirkung erzeugt, bekommt Energie. Alles andere verliert Priorität.</p>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const principles = [
+      { icon: "⚡", title: "Schnelle Wirksamkeit", short: "Heute besser statt übermorgen perfekt.", detail: "Wir suchen den nächsten wirksamen Schritt, der jetzt spürbar etwas verbessert – statt Wirkung auf später zu verschieben." },
+      { icon: "🎯", title: "Wirkungsorientierte Entscheidungen", short: "Priorität hat, was direkt Wert schafft.", detail: "Wir entscheiden nach Hebel auf Wachstum, Umsatz und Effizienz – nicht nach Lautstärke, Gewohnheit oder interner Eleganz." },
+      { icon: "🛡️", title: "Radikale Verantwortung", short: "Ownership für Resultate, nicht nur Aufgaben.", detail: "Wenn Hürden entstehen oder andere nicht liefern, organisieren wir Lösungen statt Ausreden." },
+      { icon: "🧩", title: "Einfach vor kompliziert", short: "Klarheit schlägt Overhead.", detail: "Wir halten Prozesse, Kommunikation und Entscheidungen schlank, weil Komplexität Wirkung bremst." },
+      { icon: "⏱️", title: "80/20-Mentalität", short: "80 % jetzt ist besser als 100 % zu spät.", detail: "Perfektion ist kein Ziel, wenn sie die eigentliche Wirkung verzögert oder verhindert." },
+      { icon: "✅", title: "Fokus statt Breite", short: "Energie nur auf Themen mit direkter Hebelwirkung.", detail: "Alles, was keine klare Wirkung erzeugt, rutscht bewusst nach hinten oder fällt weg." }
+    ];
+
+    const scenarios = [
+      {
+        title: "Strategische Priorisierung",
+        setup: "Ihr habt mehrere Initiativen parallel laufen. Eine davon könnte kurzfristig messbaren Umsatz bringen, eine andere ist strategisch interessant, aber ohne klaren Impact in den nächsten Monaten.",
+        options: [
+          { label: "Beide Initiativen gleich priorisieren, um nichts zu verpassen", impact: 40, feedback: "Breite statt Fokus. Ressourcen werden verteilt, Wirkung verwässert sich." },
+          { label: "Die Initiative mit kurzfristigem, messbarem Impact klar priorisieren", impact: 93, feedback: "Direct Impact pur: Fokus auf das, was jetzt konkret Wert schafft." },
+          { label: "Auf die strategische Initiative setzen, weil sie langfristig spannender ist", impact: 55, feedback: "Nicht falsch – aber Direct Impact fragt zuerst nach Wirkung im Hier und Jetzt." }
+        ]
+      },
+      {
+        title: "Meeting-Kultur",
+        setup: "Für ein Thema mit mittlerer Relevanz wird ein 60-minütiges Alignment-Meeting mit 12 Personen angesetzt. Die Entscheidung könnte auch durch zwei klare Optionen per Mail vorbereitet werden.",
+        options: [
+          { label: "Meeting durchführen, damit alle gehört werden", impact: 35, feedback: "Hoher Abstimmungsaufwand, unklare Zusatzwirkung. Direct Impact reduziert Overhead konsequent." },
+          { label: "Entscheidungsvorlage verschicken und nur die 2 betroffenen Entscheider kurz zusammenholen", impact: 92, feedback: "Hohe Hebelwirkung: schnell, fokussiert, verständlich. Weniger Output, mehr Outcome." },
+          { label: "Thema vertagen, bis mehr Daten da sind", impact: 25, feedback: "Abwarten schützt vor Fehlern, erzeugt hier aber keine unmittelbare Wirkung." }
+        ]
+      },
+      {
+        title: "Komplexitäts-Blockade",
+        setup: "Ein anderes Team blockiert den Fortschritt deiner Arbeit, weil es unnötig komplex agiert und Prozesse immer weiter ausbaut.",
+        options: [
+          { label: "Abwarten und hoffen, dass das Team seine Prozesse selbst vereinfacht", impact: 20, feedback: "Passivität verhindert Wirkung. Direct Impact akzeptiert keine Blockaden ohne Gegenmassnahmen." },
+          { label: "Aktiv vereinfachen: klare Minimal-Lösung definieren und Alignment erzwingen", impact: 94, feedback: "Starker Direct-Impact-Move: Komplexität reduzieren und Wirkung wieder freisetzen." },
+          { label: "Die Komplexität akzeptieren und deine Planung entsprechend anpassen", impact: 45, feedback: "Pragmatisch gedacht, aber ohne echten Hebel. Direct Impact greift die Ursache an." }
+        ]
+      },
+      {
+        title: "Radikale Verantwortung",
+        setup: "Du bist verantwortlich für die Einführung eines neuen Produkts. Kurz vor Launch erfährst du: Verzögerungen führen dazu, dass der User einen deutlich komplizierteren Registrierungsprozess durchlaufen muss.",
+        options: [
+          { label: "Trotzdem launchen und die Komplexität später optimieren", impact: 50, feedback: "Liefern ist gut – aber auf Kosten der User Experience kann das Wirkung zerstören." },
+          { label: "Launch kurzfristig anpassen: Registrierung radikal vereinfachen, auch mit Workarounds", impact: 97, feedback: "Maximale Verantwortung für Wirkung: Nutzererlebnis sichern und pragmatisch Lösungen schaffen." },
+          { label: "Launch verschieben, bis alles perfekt ist", impact: 60, feedback: "Qualität schützt – aber verzögert Wirkung. Direct Impact sucht den besten funktionierenden Kompromiss jetzt." }
+        ]
+      }
+    ];
+
+    const quickChecks = [
+      { q: "Zahlt das in den nächsten 18 Monaten direkt auf Abonnenten, Kunden oder Unternehmen ein?", yes: "Relevant", no: "Stoppen oder neu zuschneiden" },
+      { q: "Ist der Nutzen konkret, sichtbar und quantifizierbar?", yes: "Priorisieren", no: "Schärfen" },
+      { q: "Gibt es eine kleinere Lösung mit schnellerer Wirkung?", yes: "Vereinfachen", no: "Weiter" },
+      { q: "Braucht es dafür wirklich dieses Meeting, dieses Projekt oder diese E-Mail?", yes: "Nur schlank", no: "Weglassen" }
+    ];
+
+    function calculateAverageImpact(scores) {
+      if (!scores.length) return 0;
+      return Math.round(scores.reduce((sum, score) => sum + score, 0) / scores.length);
+    }
+
+    function describeImpactLabel(value) {
+      if (value < 30) return "Zu viel Analyse, zu wenig Wirkung";
+      if (value < 60) return "Solide, aber noch zu vorsichtig";
+      if (value < 85) return "Hohe Wirksamkeit mit gutem Pragmatismus";
+      return "Direkt am Hebel: schnell, klar, outcome-orientiert";
+    }
+
+    console.assert(calculateAverageImpact([]) === 0, "Empty scores should return 0");
+    console.assert(calculateAverageImpact([40, 60, 100]) === 67, "Average impact should be rounded");
+    console.assert(describeImpactLabel(20) === "Zu viel Analyse, zu wenig Wirkung", "Low values should map to the low-impact label");
+    console.assert(describeImpactLabel(55) === "Solide, aber noch zu vorsichtig", "Mid values should map to the cautious label");
+    console.assert(describeImpactLabel(70) === "Hohe Wirksamkeit mit gutem Pragmatismus", "Higher values should map to the effective label");
+    console.assert(describeImpactLabel(95) === "Direkt am Hebel: schnell, klar, outcome-orientiert", "Top values should map to the strongest label");
+
+    const principlesEl = document.getElementById("principles");
+    const scoreValueEl = document.getElementById("scoreValue");
+    const progressBarEl = document.getElementById("progressBar");
+    const scenarioCountEl = document.getElementById("scenarioCount");
+    const scenarioTitleEl = document.getElementById("scenarioTitle");
+    const scenarioSetupEl = document.getElementById("scenarioSetup");
+    const optionsEl = document.getElementById("options");
+    const nextBtnEl = document.getElementById("nextBtn");
+    const resetBtnEl = document.getElementById("resetBtn");
+    const finalBoxEl = document.getElementById("finalBox");
+    const rangeInputEl = document.getElementById("rangeInput");
+    const rangeValueEl = document.getElementById("rangeValue");
+    const rangeLabelEl = document.getElementById("rangeLabel");
+    const checksEl = document.getElementById("checks");
+    const yesCountEl = document.getElementById("yesCount");
+
+    let step = 0;
+    let scores = [];
+    let selected = null;
+    const checked = {};
+
+    function renderPrinciples() {
+      principlesEl.innerHTML = principles.map((p) => `
+        <div class="card">
+          <div class="card-inner">
+            <div class="principle-icon">${p.icon}</div>
+            <h3 class="principle-title">${p.title}</h3>
+            <div class="principle-short">${p.short}</div>
+            <p class="muted">${p.detail}</p>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function renderScenario() {
+      const current = scenarios[step];
+      scenarioCountEl.textContent = `Szenario ${step + 1} von ${scenarios.length}`;
+      scenarioTitleEl.textContent = current.title;
+      scenarioSetupEl.textContent = current.setup;
+
+      optionsEl.innerHTML = current.options.map((option) => {
+        const active = selected && selected.label === option.label;
+        return `
+          <button class="option${active ? " active" : ""}" data-label="${option.label.replace(/"/g, "&quot;")}">
+            <div class="option-title">${option.label}</div>
+            ${active ? `
+              <div class="impact-pill">Impact ${option.impact}/100</div>
+              <div class="feedback">${option.feedback}</div>
+            ` : ""}
+          </button>
+        `;
+      }).join("");
+
+      Array.from(optionsEl.querySelectorAll(".option")).forEach((button, idx) => {
+        button.addEventListener("click", () => choose(current.options[idx]));
+      });
+
+      nextBtnEl.disabled = !selected;
+      nextBtnEl.textContent = step < scenarios.length - 1 ? "Nächstes Szenario →" : "Noch einmal spielen";
+      finalBoxEl.classList.toggle("show", step === scenarios.length - 1 && !!selected);
+      updateScore();
+    }
+
+    function updateScore() {
+      const total = calculateAverageImpact(scores);
+      scoreValueEl.textContent = total;
+      progressBarEl.style.width = `${total}%`;
+    }
+
+    function choose(option) {
+      if (selected) return;
+      selected = option;
+      scores.push(option.impact);
+      renderScenario();
+    }
+
+    function nextStep() {
+      if (step < scenarios.length - 1) {
+        step += 1;
+        selected = null;
+        renderScenario();
+      } else {
+        resetAll();
+      }
+    }
+
+    function resetAll() {
+      step = 0;
+      scores = [];
+      selected = null;
+      renderScenario();
+    }
+
+    function renderSlider() {
+      const value = Number(rangeInputEl.value);
+      rangeValueEl.textContent = `${value}%`;
+      rangeLabelEl.textContent = describeImpactLabel(value);
+    }
+
+    function renderChecks() {
+      checksEl.innerHTML = quickChecks.map((item, idx) => {
+        const isYes = checked[idx] === true;
+        const isNo = checked[idx] === false;
+        return `
+          <div class="check-item">
+            <div class="check-q">${item.q}</div>
+            <div class="check-actions">
+              <button class="btn btn-small ${isYes ? "btn-on" : ""}" data-check="${idx}" data-value="yes">Ja</button>
+              <button class="btn btn-small ${isNo ? "btn-on" : ""}" data-check="${idx}" data-value="no">Nein</button>
+            </div>
+            ${(isYes || isNo) ? `<div class="recommendation"><strong>Empfehlung:</strong> ${isYes ? item.yes : item.no}</div>` : ""}
+          </div>
+        `;
+      }).join("");
+
+      Array.from(checksEl.querySelectorAll("[data-check]")).forEach((button) => {
+        button.addEventListener("click", () => {
+          const idx = Number(button.getAttribute("data-check"));
+          const value = button.getAttribute("data-value");
+          checked[idx] = value === "yes";
+          renderChecks();
+        });
+      });
+
+      const yesCount = Object.values(checked).filter(Boolean).length;
+      yesCountEl.textContent = String(yesCount);
+    }
+
+    nextBtnEl.addEventListener("click", () => {
+      if (step < scenarios.length - 1) {
+        if (!selected) return;
+        nextStep();
+      } else {
+        nextStep();
+      }
+    });
+
+    resetBtnEl.addEventListener("click", resetAll);
+    rangeInputEl.addEventListener("input", renderSlider);
+
+    renderPrinciples();
+    renderScenario();
+    renderSlider();
+    renderChecks();
+  </script>
+</body>
+</html>

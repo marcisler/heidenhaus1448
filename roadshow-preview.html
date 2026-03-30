@@ -6,105 +6,86 @@
 <title>Premium Digital – Roadshow</title>
 <style>
 :root{
-  --red:#e30022;
-  --red-dim:rgba(227,0,34,.12);
-  --red-glow:rgba(227,0,34,.25);
-  --bg:#080c14;
-  --bg2:#0f1520;
-  --bg3:#151d2e;
-  --card:#111827;
-  --card2:#1a2235;
-  --border:rgba(255,255,255,.07);
-  --border2:rgba(255,255,255,.13);
-  --text:#f0f4ff;
-  --muted:#6b7a99;
-  --muted2:#4a5568;
-  --gold:#c9a84c;
+  --red:#db0038;--red-dim:rgba(219,0,56,.1);--red-glow:rgba(219,0,56,.3);
+  --bg:#f5f5f4;--bg2:#ffffff;--bg3:#eeeeec;
+  --card:#ffffff;--border:rgba(48,44,40,.1);--border2:rgba(48,44,40,.18);
+  --text:#302c28;--muted:#7a7570;--muted2:#a8a39e;
   --radius:16px;
+  --c1:#009667;--c2:#00c794;--c3:#db0038;--c4:#c5c000;--c5:#ff0050;--c6:#00fac3;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%;font-family:Inter,ui-sans-serif,system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);overflow:hidden}
-
-/* SHELL */
 #shell{display:flex;height:100vh;overflow:hidden}
-#sidebar{
-  width:230px;min-width:230px;background:var(--bg2);
-  border-right:1px solid var(--border);
-  display:flex;flex-direction:column;padding:28px 0;z-index:10;transition:transform .3s
-}
+#sidebar{width:230px;min-width:230px;background:var(--text);color:#fff;display:flex;flex-direction:column;padding:28px 0;z-index:10;transition:transform .3s}
 #sidebar.hidden{transform:translateX(-230px);position:absolute;height:100%}
 #content{flex:1;overflow-y:auto;padding:48px 56px;display:flex;flex-direction:column;gap:36px}
 body.fullscreen #content{padding:56px 80px}
-
-/* TOP BAR */
-#top-bar{position:fixed;top:0;left:0;right:0;height:2px;background:rgba(255,255,255,.05);z-index:50}
-#top-fill{height:100%;background:var(--red);transition:width .4s;box-shadow:0 0 12px var(--red-glow)}
-
-/* SIDEBAR */
-.sb-logo{padding:0 24px 28px;border-bottom:1px solid var(--border);margin-bottom:8px}
-.sb-logo span{font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--muted)}
-.sb-logo strong{display:block;font-size:15px;color:var(--text);margin-top:4px;font-weight:600}
-.sb-section{padding:20px 24px 6px;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted2)}
-.sb-item{display:flex;align-items:center;gap:10px;padding:9px 24px;cursor:pointer;font-size:12.5px;color:var(--muted);transition:.15s;border-left:2px solid transparent;user-select:none}
-.sb-item:hover{color:var(--text);background:rgba(255,255,255,.04)}
-.sb-item.active{color:var(--text);border-left-color:var(--red);background:var(--red-dim)}
-.sb-item .dot{width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;font-size:9px;flex-shrink:0;color:var(--muted)}
+#top-bar{position:fixed;top:0;left:0;right:0;height:3px;background:var(--border);z-index:50}
+#top-fill{height:100%;background:var(--red);transition:width .4s;box-shadow:0 0 8px var(--red-glow)}
+.sb-logo{padding:0 24px 28px;border-bottom:1px solid rgba(255,255,255,.1);margin-bottom:8px}
+.sb-logo span{font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+.sb-logo strong{display:block;font-size:15px;color:#fff;margin-top:4px;font-weight:600}
+.sb-section{padding:20px 24px 6px;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.3)}
+.sb-item{display:flex;align-items:center;gap:10px;padding:9px 24px;cursor:pointer;font-size:12.5px;color:rgba(255,255,255,.5);transition:.15s;border-left:2px solid transparent;user-select:none}
+.sb-item:hover{color:#fff;background:rgba(255,255,255,.06)}
+.sb-item.active{color:#fff;border-left-color:var(--red);background:rgba(219,0,56,.15)}
+.sb-item .dot{width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-size:9px;flex-shrink:0;color:rgba(255,255,255,.4)}
 .sb-item.active .dot{background:var(--red);color:#fff}
-.sb-progress{padding:24px;margin-top:auto;border-top:1px solid var(--border)}
-.sb-prog-label{font-size:10px;color:var(--muted2);margin-bottom:10px;letter-spacing:.05em}
-.sb-prog-bar{height:2px;background:rgba(255,255,255,.07);border-radius:9px;overflow:hidden}
+.sb-progress{padding:24px;margin-top:auto;border-top:1px solid rgba(255,255,255,.08)}
+.sb-prog-label{font-size:10px;color:rgba(255,255,255,.35);margin-bottom:10px}
+.sb-prog-bar{height:2px;background:rgba(255,255,255,.1);border-radius:9px;overflow:hidden}
 .sb-prog-fill{height:100%;background:var(--red);transition:width .4s}
-
-/* SLIDES */
 .slide{display:none}
-.slide.active{display:block;animation:fadeUp .4s ease}
-@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-
-/* TYPOGRAPHY */
-.eyebrow{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--red);margin-bottom:14px;font-weight:500}
+.slide.active{display:block;animation:fadeUp .35s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.eyebrow{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--red);margin-bottom:14px;font-weight:600}
 .slide-title{font-size:clamp(2.2rem,4.5vw,3.8rem);font-weight:800;line-height:1.02;margin-bottom:18px;letter-spacing:-.02em;color:var(--text)}
 .slide-lead{font-size:1.05rem;color:var(--muted);line-height:1.85;max-width:740px}
-
-/* CARDS */
-.card{background:var(--card);border-radius:var(--radius);border:1px solid var(--border);padding:28px}
+.card{background:var(--card);border-radius:var(--radius);border:1px solid var(--border);padding:28px;box-shadow:0 2px 12px rgba(48,44,40,.06)}
 .card-sm{padding:20px}
 .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
 
 /* STORY HOOK */
-.story-hook{
-  border:1px solid rgba(227,0,34,.3);
-  background:rgba(227,0,34,.06);
-  border-radius:12px;padding:18px 22px;margin-bottom:28px;
-}
-.story-hook p{font-size:1rem;font-weight:500;color:rgba(240,244,255,.75);line-height:1.7;font-style:italic}
-.story-hook p::before{content:'"';color:var(--red);font-size:1.4rem;line-height:0;vertical-align:-4px;margin-right:4px}
-.story-hook p::after{content:'"';color:var(--red);font-size:1.4rem;line-height:0;vertical-align:-4px;margin-left:4px}
+.story-hook{border-left:3px solid var(--red);background:var(--red-dim);border-radius:0 12px 12px 0;padding:18px 22px;margin-bottom:28px}
+.story-hook p{font-size:1rem;font-weight:500;color:var(--text);line-height:1.7;font-style:italic}
 
-/* HERO STATS */
-.hero-stats{display:flex;gap:0;margin-top:48px;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;max-width:520px}
+/* HERO */
+.hero-stats{display:flex;margin-top:48px;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;max-width:520px;background:var(--card)}
 .hero-stat{flex:1;padding:24px 28px;border-right:1px solid var(--border)}
 .hero-stat:last-child{border-right:none}
 .hero-stat .n{font-size:2.6rem;font-weight:800;color:var(--red);line-height:1;letter-spacing:-.03em}
 .hero-stat .l{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;margin-top:6px}
 
-/* PRINCIPLE CARDS */
+/* PRINCIPLES */
 .p-num{font-size:.72rem;font-weight:700;color:var(--red);letter-spacing:.15em;text-transform:uppercase;margin-bottom:12px}
 .p-title{font-size:1rem;font-weight:700;margin-bottom:6px;color:var(--text)}
-.p-short{font-size:.82rem;font-weight:500;color:var(--gold);margin-bottom:10px}
+.p-short{font-size:.82rem;font-weight:600;color:#302c28;margin-bottom:10px;opacity:.6}
 .p-detail{font-size:.85rem;color:var(--muted);line-height:1.7}
 
+/* TEAM OVERVIEW SLIDE */
+.teams-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.team-overview-card{
+  border-radius:var(--radius);padding:28px 24px;
+  display:flex;flex-direction:column;gap:10px;
+  position:relative;overflow:hidden;
+}
+.team-overview-card .to-icon{font-size:2rem;margin-bottom:4px}
+.team-overview-card .to-name{font-size:1.05rem;font-weight:800;color:#fff}
+.team-overview-card .to-claim{font-size:.85rem;color:rgba(255,255,255,.8);line-height:1.55}
+.team-overview-card::after{content:"";position:absolute;bottom:-20px;right:-20px;width:80px;height:80px;border-radius:50%;background:rgba(255,255,255,.08)}
+
 /* STATUS */
-.status-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.status-card{background:var(--card);border-radius:14px;border:1px solid var(--border);padding:20px;text-align:center}
-.status-card .team-lbl{font-size:.7rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;margin-bottom:14px}
-.status-dot{width:40px;height:40px;border-radius:50%;margin:0 auto 12px;cursor:pointer;transition:.2s;border:2px solid transparent}
+.status-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.status-card{background:var(--card);border-radius:14px;border:1px solid var(--border);padding:16px;text-align:center;box-shadow:0 2px 8px rgba(48,44,40,.05)}
+.status-card .team-lbl{font-size:.62rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px}
+.status-dot{width:36px;height:36px;border-radius:50%;margin:0 auto 10px;cursor:pointer;transition:.2s;border:2px solid transparent}
 .status-dot:hover{transform:scale(1.1)}
-.status-dot.green{background:#16a34a;border-color:#22c55e;box-shadow:0 0 16px rgba(34,197,94,.3)}
-.status-dot.yellow{background:#ca8a04;border-color:#eab308;box-shadow:0 0 16px rgba(234,179,8,.3)}
-.status-dot.red{background:#dc2626;border-color:#ef4444;box-shadow:0 0 16px rgba(239,68,68,.3)}
-.status-dot.gray{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.12)}
-.status-label{font-size:.7rem;color:var(--muted)}
+.status-dot.green{background:#009667;border-color:#00c794;box-shadow:0 0 14px rgba(0,150,103,.35)}
+.status-dot.yellow{background:#8c8e00;border-color:#c5c000;box-shadow:0 0 14px rgba(197,192,0,.35)}
+.status-dot.red{background:#b80021;border-color:#db0038;box-shadow:0 0 14px rgba(219,0,56,.35)}
+.status-dot.gray{background:#e0dedd;border-color:#c8c4c0}
+.status-label{font-size:.65rem;color:var(--muted)}
 
 /* FUNNEL */
 .funnel-steps{display:flex;flex-direction:column;gap:6px}
@@ -113,39 +94,31 @@ body.fullscreen #content{padding:56px 80px}
 .fstep-label{font-size:.92rem;font-weight:700;color:var(--c);margin-bottom:2px}
 .fstep-desc{font-size:.78rem;color:var(--muted);line-height:1.4}
 .fstep-kpi{text-align:right;min-width:130px}
-.kpi-val{font-size:1.1rem;font-weight:800;color:var(--text);border-bottom:1.5px dashed rgba(255,255,255,.15);min-width:40px;display:inline-block;outline:none;cursor:text}
+.kpi-val{font-size:1.1rem;font-weight:800;color:var(--text);border-bottom:1.5px dashed var(--border2);min-width:40px;display:inline-block;outline:none;cursor:text}
 .kpi-val:focus{border-bottom-color:var(--red)}
 .kpi-unit{display:block;font-size:.7rem;color:var(--muted);margin-top:3px}
 
 /* TEAM CARDS */
 .team-header{display:flex;align-items:center;gap:14px;margin-bottom:18px}
-.team-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;border:1px solid var(--border2)}
+.team-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
 .team-name{font-size:1.15rem;font-weight:700;color:var(--text)}
 .team-sub{font-size:.75rem;color:var(--muted);margin-top:2px}
 .team-role{font-size:.88rem;color:var(--muted);line-height:1.65;margin-bottom:18px}
 .team-vision{background:var(--bg3);border-radius:10px;padding:14px 16px;margin-bottom:18px;border-left:2px solid var(--red)}
 .team-vision-label{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--red);margin-bottom:5px;font-weight:600}
-.team-vision p{font-size:.88rem;color:rgba(240,244,255,.7);line-height:1.65;font-style:italic}
+.team-vision p{font-size:.88rem;color:var(--text);line-height:1.65;font-style:italic}
 .prio-list{display:flex;flex-direction:column;gap:6px}
 .prio{display:flex;align-items:flex-start;gap:10px;padding:11px 14px;background:var(--bg3);border-radius:10px;border:1px solid var(--border)}
 .prio-num{width:22px;height:22px;border-radius:50%;background:var(--red);color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
 .prio-text{font-size:.85rem;color:var(--text);line-height:1.5}
 .prio-text strong{font-weight:600;display:block;margin-bottom:2px}
 .prio-milestone{font-size:.75rem;color:var(--muted);margin-top:3px}
-
-/* DISCUSSION */
-.discussion-prompt{margin-top:18px;background:var(--bg3);border:1px solid var(--border2);border-radius:12px;padding:16px 18px;display:flex;align-items:flex-start;gap:12px}
+.coming-soon{background:var(--bg3);border:1px dashed var(--border2);border-radius:12px;padding:24px;text-align:center;color:var(--muted);font-size:.9rem;margin-top:8px}
+.discussion-prompt{margin-top:18px;background:var(--text);border-radius:12px;padding:16px 18px;display:flex;align-items:flex-start;gap:12px}
 .dp-icon{font-size:16px;flex-shrink:0;margin-top:2px}
-.dp-label{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted2);margin-bottom:4px;font-weight:600}
-.dp-text{font-size:.88rem;color:rgba(240,244,255,.8);line-height:1.55}
-
-/* OPEN BTN */
-.open-btn{
-  display:inline-flex;align-items:center;gap:8px;
-  background:var(--red);color:#fff;border:none;border-radius:999px;
-  padding:10px 20px;font-size:.83rem;font-weight:700;cursor:pointer;margin-top:14px;
-  transition:.15s;
-}
+.dp-label{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:4px;font-weight:600}
+.dp-text{font-size:.88rem;color:rgba(255,255,255,.9);line-height:1.55}
+.open-btn{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;border:none;border-radius:999px;padding:10px 20px;font-size:.83rem;font-weight:700;cursor:pointer;margin-top:14px;transition:.15s}
 .open-btn:hover{opacity:.88}
 
 /* NOTES */
@@ -154,66 +127,54 @@ body.fullscreen #content{padding:56px 80px}
 .notes-toggle summary::-webkit-details-marker{display:none}
 .notes-toggle summary::before{content:"▸"}
 details.notes-toggle[open] summary::before{content:"▾"}
-.notes-box{margin-top:10px;background:var(--bg3);border:1px solid var(--border);color:rgba(240,244,255,.7);border-radius:10px;padding:14px 18px;font-size:.8rem;line-height:1.75}
-.notes-box strong{color:var(--muted);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;display:block;margin-bottom:6px}
+.notes-box{margin-top:10px;background:var(--text);color:rgba(255,255,255,.75);border-radius:10px;padding:14px 18px;font-size:.8rem;line-height:1.75}
+.notes-box strong{color:rgba(255,255,255,.4);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;display:block;margin-bottom:6px}
 
-/* RED HERO BLOCK */
-.red-block{
-  background:linear-gradient(135deg,#1a0005 0%,#2d0008 50%,#1a0005 100%);
-  border:1px solid rgba(227,0,34,.4);
-  border-radius:var(--radius);padding:44px;position:relative;overflow:hidden;
-}
-.red-block::before{
-  content:"";position:absolute;top:-60px;right:-60px;width:220px;height:220px;
-  background:var(--red);border-radius:50%;opacity:.08;filter:blur(60px);
-}
-.red-block .eyebrow{color:rgba(227,0,34,.7)}
+/* RED BLOCK */
+.red-block{background:var(--red);border-radius:var(--radius);padding:44px;position:relative;overflow:hidden}
+.red-block::before{content:"";position:absolute;top:-60px;right:-60px;width:220px;height:220px;background:#fff;border-radius:50%;opacity:.06;filter:blur(60px)}
+.red-block .eyebrow{color:rgba(255,255,255,.6)}
 .red-block h2{font-size:clamp(1.8rem,3.5vw,2.9rem);font-weight:800;line-height:1.12;margin:10px 0 18px;color:#fff;letter-spacing:-.02em}
-.red-block p{font-size:1.05rem;line-height:1.85;color:rgba(255,255,255,.7)}
-
-/* CLOSING CARDS */
-.closing-card{background:var(--card);border-radius:var(--radius);border:1px solid var(--border);padding:24px}
+.red-block p{font-size:1.05rem;line-height:1.85;color:rgba(255,255,255,.8)}
+.closing-card{background:var(--card);border-radius:var(--radius);border:1px solid var(--border);padding:24px;box-shadow:0 2px 12px rgba(48,44,40,.06)}
 .closing-card .c-num{font-size:2rem;margin-bottom:12px}
 .closing-card .c-title{font-size:1rem;font-weight:700;color:var(--text);margin-bottom:8px}
 .closing-card .c-text{font-size:.88rem;color:var(--muted);line-height:1.65}
 
 /* NAV */
 #nav{position:fixed;bottom:32px;right:40px;display:flex;gap:10px;z-index:100}
-.nav-btn{width:46px;height:46px;border-radius:50%;border:none;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;transition:.15s}
-.nav-btn.primary{background:var(--red);color:#fff;box-shadow:0 4px 20px var(--red-glow)}
-.nav-btn.secondary{background:var(--card);color:var(--text);border:1px solid var(--border2)}
-.nav-btn:disabled{opacity:.25;cursor:not-allowed}
+.nav-btn{width:46px;height:46px;border-radius:50%;border:none;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;transition:.15s;box-shadow:0 4px 16px rgba(48,44,40,.15)}
+.nav-btn.primary{background:var(--red);color:#fff}
+.nav-btn.secondary{background:#fff;color:var(--text);border:1px solid var(--border2)}
+.nav-btn:disabled{opacity:.25;cursor:not-allowed;box-shadow:none}
 .nav-btn:hover:not(:disabled){transform:scale(1.08)}
-.slide-counter{position:fixed;bottom:38px;left:50%;transform:translateX(-50%);font-size:11px;color:var(--muted);background:var(--card);border:1px solid var(--border);border-radius:999px;padding:6px 18px}
-
-/* TOOLBAR */
+.slide-counter{position:fixed;bottom:38px;left:50%;transform:translateX(-50%);font-size:11px;color:var(--muted);background:#fff;border:1px solid var(--border);border-radius:999px;padding:6px 18px;box-shadow:0 2px 8px rgba(48,44,40,.08)}
 #toolbar{position:fixed;top:14px;right:18px;display:flex;gap:8px;z-index:100}
-.tool-btn{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:7px 14px;font-size:11.5px;cursor:pointer;color:var(--muted);transition:.15s}
+.tool-btn{background:#fff;border:1px solid var(--border);border-radius:10px;padding:7px 14px;font-size:11.5px;cursor:pointer;color:var(--muted);transition:.15s;box-shadow:0 2px 8px rgba(48,44,40,.06)}
 .tool-btn:hover{color:var(--text);border-color:var(--border2)}
-.tool-btn.active{background:var(--red);color:#fff;border-color:var(--red)}
+.tool-btn.active{background:var(--text);color:#fff;border-color:var(--text)}
 
 /* MODAL */
-#modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:200;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
+#modal-overlay{display:none;position:fixed;inset:0;background:rgba(48,44,40,.5);z-index:200;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
 #modal-overlay.open{display:flex}
-#modal{background:var(--bg2);border:1px solid var(--border2);border-radius:24px;width:min(860px,94vw);max-height:88vh;overflow-y:auto;padding:40px;box-shadow:0 32px 80px rgba(0,0,0,.6)}
+#modal{background:#fff;border:1px solid var(--border);border-radius:24px;width:min(860px,94vw);max-height:88vh;overflow-y:auto;padding:40px;box-shadow:0 24px 60px rgba(48,44,40,.2)}
 #modal-close{float:right;background:none;border:1px solid var(--border);border-radius:8px;padding:6px 12px;cursor:pointer;font-size:12px;color:var(--muted)}
 .modal-prio{background:var(--bg3);border-radius:12px;padding:18px;margin-bottom:12px;border-left:2px solid var(--red)}
 .modal-prio-title{font-size:.98rem;font-weight:700;margin-bottom:6px;color:var(--text)}
 .modal-prio-desc{font-size:.87rem;color:var(--muted);line-height:1.65;margin-bottom:12px}
 .modal-section-label{font-size:.68rem;font-weight:600;color:var(--muted2);text-transform:uppercase;letter-spacing:.14em;margin-bottom:6px}
 .results-list{display:flex;flex-direction:column;gap:4px;margin-bottom:10px}
-.result-item{font-size:.83rem;color:var(--text);padding:6px 10px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.result-item{font-size:.83rem;color:var(--text);padding:6px 10px;background:#fff;border-radius:8px;border:1px solid var(--border)}
 .milestone-pills{display:flex;flex-wrap:wrap;gap:6px}
-.mpill{font-size:.73rem;background:rgba(227,0,34,.12);color:#ff6b6b;border:1px solid rgba(227,0,34,.2);border-radius:999px;padding:3px 12px;font-weight:600}
+.mpill{font-size:.73rem;background:var(--red-dim);color:var(--red);border:1px solid rgba(219,0,56,.2);border-radius:999px;padding:3px 12px;font-weight:600}
 </style>
 </head>
 <body>
-<div id="top-bar"><div id="top-fill" style="width:11.1%"></div></div>
+<div id="top-bar"><div id="top-fill"></div></div>
 <div id="toolbar">
   <button class="tool-btn" id="btn-fullscreen">⛶ Fullscreen</button>
   <button class="tool-btn" id="btn-sidebar">☰ Sidebar</button>
 </div>
-
 <div id="shell">
   <div id="sidebar">
     <div class="sb-logo">
@@ -222,50 +183,56 @@ details.notes-toggle[open] summary::before{content:"▾"}
     </div>
     <div class="sb-section">Story</div>
     <div class="sb-item" data-slide="0"><div class="dot">1</div>Window of opportunity</div>
-    <div class="sb-item" data-slide="1"><div class="dot">2</div>Unser Kompass</div>
+    <div class="sb-item" data-slide="1"><div class="dot">2</div>Unsere Prinzipien</div>
     <div class="sb-item" data-slide="2"><div class="dot">3</div>Wo wir stehen</div>
     <div class="sb-item" data-slide="3"><div class="dot">4</div>Die zwei Hebel</div>
+    <div class="sb-item" data-slide="4"><div class="dot">5</div>Unsere Teams</div>
     <div class="sb-section" style="margin-top:4px">Teams</div>
-    <div class="sb-item" data-slide="4"><div class="dot">5</div>Digital Desk</div>
-    <div class="sb-item" data-slide="5"><div class="dot">6</div>Product Mgmt.</div>
-    <div class="sb-item" data-slide="6"><div class="dot">7</div>Sub. Revenue</div>
-    <div class="sb-item" data-slide="7"><div class="dot">8</div>Sub. Growth</div>
-    <div class="sb-item" data-slide="8"><div class="dot">9</div>Adv. Ops</div>
-    <div class="sb-item" data-slide="9"><div class="dot">10</div>Jetzt.</div>
+    <div class="sb-item" data-slide="5"><div class="dot">6</div>Digital Desk</div>
+    <div class="sb-item" data-slide="6"><div class="dot">7</div>Product Mgmt.</div>
+    <div class="sb-item" data-slide="7"><div class="dot">8</div>Sub. Revenue</div>
+    <div class="sb-item" data-slide="8"><div class="dot">9</div>Sub. Growth</div>
+    <div class="sb-item" data-slide="9"><div class="dot">10</div>Adv. Ops</div>
+    <div class="sb-item" data-slide="10"><div class="dot">11</div>Adv. Sales</div>
+    <div class="sb-item" data-slide="11"><div class="dot">12</div>Jetzt.</div>
     <div class="sb-progress">
-      <div class="sb-prog-label" id="sb-prog-label">Folie 1 / 9</div>
+      <div class="sb-prog-label" id="sb-prog-label">Folie 1 / 12</div>
       <div class="sb-prog-bar"><div class="sb-prog-fill" id="sb-fill"></div></div>
     </div>
   </div>
-
   <div id="content">
 
-    <!-- SLIDE 0 -->
+    <!-- 0: INTRO -->
     <div class="slide active" id="slide-0">
       <div style="min-height:65vh;display:flex;flex-direction:column;justify-content:center">
         <div class="eyebrow">Premium Digital · Roadshow 2026</div>
         <div class="slide-title">Window of<br>opportunity.</div>
-        <p class="slide-lead">Der Schweizer Markt für digitale Bezahlmedien ist im Umbruch. Vertrauen in Qualitätsjournalismus wächst. Die Zahlungsbereitschaft steigt. Und wir haben die Marke, die Reichweite und die Teams, um das erfolgreichste digitale Bezahlmedium der Schweiz zu werden.</p>
-        <p class="slide-lead" style="margin-top:16px;color:var(--text);font-weight:600">Aber Fenster schliessen sich. Was wir heute nicht tun, tut morgen jemand anderes.</p>
+        <p class="slide-lead">Der Schweizer Markt für digitale Bezahlmedien wächst, die Zahlungsbereitschaft steigt Jahr für Jahr und zählt zu den höchsten in Europa. Und wir haben die Marke, die Reichweite und die Teams, um das erfolgreichste digitale Bezahlmedium der Schweiz zu werden.</p>
+        <p class="slide-lead" style="margin-top:16px;color:var(--text);font-weight:600">Aber: Was wir heute nicht tun, tut morgen jemand anderes.</p>
         <div class="hero-stats">
           <div class="hero-stat"><div class="n">Jetzt</div><div class="l">Der Moment</div></div>
-          <div class="hero-stat"><div class="n">4</div><div class="l">Teams</div></div>
-          <div class="hero-stat"><div class="n">Sept.</div><div class="l">Nächster Beweis</div></div>
+          <div class="hero-stat"><div class="n">6</div><div class="l">Teams</div></div>
+          <div class="hero-stat"><div class="n">Sept.</div><div class="l">Zeithorizont</div></div>
         </div>
       </div>
-      <details class="notes-toggle"><summary>Presenter-Notizen</summary><div class="notes-box"><strong>Stichworte</strong>Nicht erklären, spüren lassen. Pause nach «opportunity.» Dann langsam: Wir haben alles. Die Frage ist nur, ob wir es jetzt tun.</div></details>
+      <details class="notes-toggle"><summary>Presenter-Notizen</summary><div class="notes-box"><strong>Stichworte</strong>Nicht erklären, spüren lassen. Pause nach «opportunity.» Dann: Wir haben alles. Die Frage ist nur, ob wir es jetzt tun.</div></details>
     </div>
 
-    <!-- SLIDE 1 -->
+    <!-- 1: PRINZIPIEN -->
     <div class="slide" id="slide-1">
       <div class="story-hook"><p>Wir werden nicht scheitern, weil wir zu wenig wissen. Wir scheitern, wenn wir zu lange warten, zu viel abstimmen, zu wenig entscheiden.</p></div>
-      <div class="eyebrow">Unser Führungskompass</div>
-      <div class="slide-title" style="font-size:clamp(1.7rem,3vw,2.5rem);margin-bottom:24px">6 Prinzipien, kein Regelwerk, ein Filter.</div>
+      <div class="eyebrow">Unsere Prinzipien</div>
+      <div class="slide-title" style="font-size:clamp(1.7rem,3vw,2.5rem);margin-bottom:24px">Unsere 6 Prinzipien.</div>
       <div class="grid-3" id="principles-grid"></div>
-      <details class="notes-toggle"><summary>Presenter-Notizen</summary><div class="notes-box"><strong>Stichworte</strong>Nicht vorlesen, gemeinsamen Nenner erklären: jede Entscheidung durch diesen Filter. Frage: «Welches Prinzip fällt uns im Alltag am schwersten?»</div></details>
+      <div style="margin-top:16px;display:flex;gap:10px;align-items:center">
+        <button onclick="revealNext()" id="reveal-btn" style="background:var(--red);color:#fff;border:none;border-radius:999px;padding:9px 22px;font-size:.85rem;font-weight:700;cursor:pointer">Nächstes Prinzip aufdecken →</button>
+        <button onclick="revealAll()" style="background:none;border:1px solid var(--border2);color:var(--muted);border-radius:999px;padding:9px 18px;font-size:.82rem;cursor:pointer">Alle zeigen</button>
+        <button onclick="resetPrinciples()" style="background:none;border:1px solid var(--border2);color:var(--muted);border-radius:999px;padding:9px 18px;font-size:.82rem;cursor:pointer">Zurücksetzen</button>
+      </div>
+      <details class="notes-toggle"><summary>Presenter-Notizen</summary><div class="notes-box"><strong>Stichworte</strong>Nicht vorlesen, gemeinsamen Nenner erklären. Frage: «Welches Prinzip fällt uns im Alltag am schwersten?»</div></details>
     </div>
 
-    <!-- SLIDE 2 -->
+    <!-- 2: STATUS -->
     <div class="slide" id="slide-2">
       <div class="story-hook"><p>Ehrlichkeit ist der schnellste Weg nach vorne. Wer heute beschönigt, kämpft morgen mit den falschen Problemen.</p></div>
       <div class="eyebrow">Standortbestimmung</div>
@@ -276,71 +243,65 @@ details.notes-toggle[open] summary::before{content:"▾"}
       <details class="notes-toggle"><summary>Presenter-Notizen</summary><div class="notes-box"><strong>Stichworte</strong>Vor dem Meeting ausfüllen oder live. Wer Rot benennt, schafft Raum zum Handeln.</div></details>
     </div>
 
-    <!-- SLIDE 3 -->
+    <!-- 3: FUNNELS -->
     <div class="slide" id="slide-3">
       <div class="story-hook"><p>Wachstum passiert nicht zufällig. Es passiert dort, wo wir den Hebel ansetzen, bewusst, messbar, jetzt.</p></div>
       <div class="eyebrow">Unsere zwei Wachstumsmotoren</div>
-      <div class="slide-title" style="font-size:clamp(1.7rem,3vw,2.5rem);margin-bottom:28px">Abo-Geschäft und Werbemarkt. Beide müssen laufen.</div>
+      <div class="slide-title" style="font-size:clamp(1.7rem,3vw,2.5rem);margin-bottom:28px">Abo-Geschäft und Werbemarkt. Wir brauchen beides, um erfolgreich zu sein.</div>
       <div class="grid-2">
         <div class="card">
-          <div style="font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:18px;font-weight:500">Motor 1 — Abo-Geschäft</div>
-          <div class="funnel-steps" id="funnel-abo">
-            <div class="fstep" style="--c:#e30022"><div style="flex:1"><div class="fstep-label">Attract</div><div class="fstep-desc">Reichweite &amp; Sichtbarkeit aufbauen</div></div><div class="fstep-kpi"><span class="kpi-val" contenteditable="true" spellcheck="false">—</span><span class="kpi-unit">Unique Users / Monat</span></div></div>
-            <div class="fstep" style="--c:#b91c1c"><div style="flex:1"><div class="fstep-label">Engage</div><div class="fstep-desc">Loyalität &amp; Registrierungen steigern</div></div><div class="fstep-kpi"><span class="kpi-val" contenteditable="true" spellcheck="false">—</span><span class="kpi-unit">Registrierungen / Monat</span></div></div>
-            <div class="fstep" style="--c:#991b1b"><div style="flex:1"><div class="fstep-label">Convert</div><div class="fstep-desc">Aus Lesern zahlende Abonnenten machen</div></div><div class="fstep-kpi"><span class="kpi-val" contenteditable="true" spellcheck="false">—</span><span class="kpi-unit">Netto-Gains / Monat</span></div></div>
-            <div class="fstep" style="--c:#7f1d1d"><div style="flex:1"><div class="fstep-label">Retain</div><div class="fstep-desc">Churn senken, Bindung stärken</div></div><div class="fstep-kpi"><span class="kpi-val" contenteditable="true" spellcheck="false">—</span><span class="kpi-unit">Churn-Rate Ziel</span></div></div>
+          <div style="font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:20px">Motor 1 — Abo-Geschäft</div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div style="display:flex;align-items:center;gap:14px;padding:14px 16px;background:var(--bg3);border-radius:10px;border-left:3px solid #db0038">
+              <div style="font-size:1.3rem">📣</div><div><div style="font-weight:700;font-size:.95rem;color:#db0038">Attract</div><div style="font-size:.8rem;color:var(--muted)">Reichweite &amp; Sichtbarkeit aufbauen</div></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:14px;padding:14px 16px;background:var(--bg3);border-radius:10px;border-left:3px solid #b80021">
+              <div style="font-size:1.3rem">💡</div><div><div style="font-weight:700;font-size:.95rem;color:#b80021">Engage</div><div style="font-size:.8rem;color:var(--muted)">Loyalität &amp; Registrierungen steigern</div></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:14px;padding:14px 16px;background:var(--bg3);border-radius:10px;border-left:3px solid #95000b">
+              <div style="font-size:1.3rem">💳</div><div><div style="font-weight:700;font-size:.95rem;color:#95000b">Convert</div><div style="font-size:.8rem;color:var(--muted)">Aus Lesern zahlende Abonnenten machen</div></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:14px;padding:14px 16px;background:var(--bg3);border-radius:10px;border-left:3px solid #740000">
+              <div style="font-size:1.3rem">🔄</div><div><div style="font-weight:700;font-size:.95rem;color:#740000">Retain</div><div style="font-size:.8rem;color:var(--muted)">Churn senken, Bindung stärken</div></div>
+            </div>
           </div>
         </div>
         <div class="card">
-          <div style="font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:18px;font-weight:500">Motor 2 — Werbemarkt</div>
-          <div class="funnel-steps" id="funnel-ads">
-            <div class="fstep" style="--c:#3b82f6"><div style="flex:1"><div class="fstep-label">Meeting-Termine</div><div class="fstep-desc">Kundenkontakte &amp; Erstgespräche</div></div><div class="fstep-kpi"><span class="kpi-val" contenteditable="true" spellcheck="false">—</span><span class="kpi-unit">Termine / Monat</span></div></div>
-            <div class="fstep" style="--c:#2563eb"><div style="flex:1"><div class="fstep-label">Offertenvolumen</div><div class="fstep-desc">Angebote in Verhandlung</div></div><div class="fstep-kpi"><span class="kpi-val" contenteditable="true" spellcheck="false">—</span><span class="kpi-unit">CHF Offertenvolumen</span></div></div>
-            <div class="fstep" style="--c:#1d4ed8"><div style="flex:1"><div class="fstep-label">Deals</div><div class="fstep-desc">Abgeschlossene Kampagnen &amp; Umsatz</div></div><div class="fstep-kpi"><span class="kpi-val" contenteditable="true" spellcheck="false">—</span><span class="kpi-unit">CHF Umsatz / Monat</span></div></div>
-          </div>
-          <div style="margin-top:14px;padding:14px 16px;background:var(--bg3);border-radius:10px;border:1px solid var(--border)">
-            <div style="font-size:.68rem;font-weight:600;color:var(--muted2);text-transform:uppercase;letter-spacing:.12em;margin-bottom:6px">Conversion-Rate Termine → Deals</div>
-            <span class="kpi-val" contenteditable="true" spellcheck="false" style="font-size:1.8rem;font-weight:800">—</span><span style="font-size:.85rem;color:var(--muted);margin-left:8px">%</span>
+          <div style="font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:20px">Motor 2 — Werbemarkt</div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div style="display:flex;align-items:center;gap:14px;padding:14px 16px;background:var(--bg3);border-radius:10px;border-left:3px solid #009667">
+              <div style="font-size:1.3rem">📅</div><div><div style="font-weight:700;font-size:.95rem;color:#009667">Meeting-Termine</div><div style="font-size:.8rem;color:var(--muted)">Kundenkontakte &amp; Erstgespräche</div></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:14px;padding:14px 16px;background:var(--bg3);border-radius:10px;border-left:3px solid #00673d">
+              <div style="font-size:1.3rem">📋</div><div><div style="font-weight:700;font-size:.95rem;color:#00673d">Offertenvolumen</div><div style="font-size:.8rem;color:var(--muted)">Angebote in Verhandlung</div></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:14px;padding:14px 16px;background:var(--bg3);border-radius:10px;border-left:3px solid #003a17">
+              <div style="font-size:1.3rem">🤝</div><div><div style="font-weight:700;font-size:.95rem;color:#003a17">Deals</div><div style="font-size:.8rem;color:var(--muted)">Abgeschlossene Kampagnen &amp; Umsatz</div></div>
+            </div>
           </div>
         </div>
       </div>
-      <details class="notes-toggle"><summary>Presenter-Notizen</summary><div class="notes-box"><strong>Stichworte</strong>Zahlen vorher eintragen oder live. Beide Motoren hängen zusammen. Frage: «Wo ist unser grösster Engpass heute?»</div></details>
+      <details class="notes-toggle"><summary>Presenter-Notizen</summary><div class="notes-box"><strong>Stichworte</strong>Beide Motoren erklären, Zusammenhang zeigen. Frage: «Wo ist unser grösster Engpass heute?»</div></details>
     </div>
 
-    <!-- SLIDES 4–7 TEAMS -->
+    <!-- 4: TEAM OVERVIEW -->
     <div class="slide" id="slide-4">
-      <div class="story-hook"><p>Kein Wachstum ohne Reichweite. Der Digital Desk entscheidet, wie viele Menschen uns überhaupt finden, und ob sie bleiben.</p></div>
-      <div class="eyebrow">Team 1 von 5</div>
-      <div class="slide-title" style="font-size:clamp(1.7rem,3vw,2.5rem)">Digital Desk</div>
-      <div class="grid-2" id="team-digital-desk"></div>
-    </div>
-    <div class="slide" id="slide-5">
-      <div class="story-hook"><p>Das beste Produkt nützt nichts, wenn es niemand findet oder versteht. Product Management stellt sicher, dass unsere Inhalte ihr volles Potenzial entfalten.</p></div>
-      <div class="eyebrow">Team 2 von 5</div>
-      <div class="slide-title" style="font-size:clamp(1.7rem,3vw,2.5rem)">Product Management</div>
-      <div class="grid-2" id="team-product-mgmt"></div>
-    </div>
-    <div class="slide" id="slide-6">
-      <div class="story-hook"><p>Reichweite ohne Conversion ist Lärm. Subscription Revenue macht aus Aufmerksamkeit echte Bindung, und aus Bindung Umsatz.</p></div>
-      <div class="eyebrow">Team 3 von 5</div>
-      <div class="slide-title" style="font-size:clamp(1.7rem,3vw,2.5rem)">Subscription Revenue</div>
-      <div class="grid-2" id="team-sub-revenue"></div>
-    </div>
-    <div class="slide" id="slide-7">
-      <div class="story-hook"><p>Organisches Wachstum allein reicht nicht. Subscription Growth öffnet Türen, die wir alleine nie erreichen würden, und das im grossen Massstab.</p></div>
-      <div class="eyebrow">Team 4 von 5</div>
-      <div class="slide-title" style="font-size:clamp(1.7rem,3vw,2.5rem)">Subscription Growth</div>
-      <div class="grid-2" id="team-sub-growth"></div>
-    </div>
-    <div class="slide" id="slide-8">
-      <div class="story-hook"><p>Ein starkes Produkt verdient auch starke Werbeeinnahmen. Advertising Ops ist der Maschinenraum, der Sales erst richtig schlagkräftig macht.</p></div>
-      <div class="eyebrow">Team 5 von 5</div>
-      <div class="slide-title" style="font-size:clamp(1.7rem,3vw,2.5rem)">Advertising Operations</div>
-      <div class="grid-2" id="team-adv-ops"></div>
+      <div class="eyebrow">Unsere Teams</div>
+      <div class="slide-title" style="font-size:clamp(1.7rem,3vw,2.5rem);margin-bottom:28px">Sechs Teams. Ein Ziel.</div>
+      <div class="teams-grid" id="teams-overview"></div>
+      <details class="notes-toggle"><summary>Presenter-Notizen</summary><div class="notes-box"><strong>Stichworte</strong>Kurz durch alle Teams führen. Jedes Team hat eine klare Rolle im Gesamtsystem. Dann tauchen wir in die Details ein.</div></details>
     </div>
 
-    <!-- SLIDE 9 -->
-    <div class="slide" id="slide-9">
+    <!-- 5–10: TEAMS -->
+    <div class="slide" id="slide-5"><div class="story-hook"><p>Kein Wachstum ohne Reichweite. Der Digital Desk entscheidet, wie viele Menschen uns überhaupt finden, und ob sie bleiben.</p></div><div class="eyebrow">Team 1 von 6</div><div class="slide-title" style="font-size:clamp(1.7rem,3vw,2.5rem)">Digital Desk</div><div class="grid-2" id="c-digital-desk"></div></div>
+    <div class="slide" id="slide-6"><div class="story-hook"><p>Das beste Produkt nützt nichts, wenn es niemand findet oder versteht. Product Management stellt sicher, dass unsere Inhalte ihr volles Potenzial entfalten.</p></div><div class="eyebrow">Team 2 von 6</div><div class="slide-title" style="font-size:clamp(1.7rem,3vw,2.5rem)">Product Management</div><div class="grid-2" id="c-product-mgmt"></div></div>
+    <div class="slide" id="slide-7"><div class="story-hook"><p>Reichweite ohne Conversion ist Lärm. Subscription Revenue macht aus Aufmerksamkeit echte Bindung, und aus Bindung Umsatz.</p></div><div class="eyebrow">Team 3 von 6</div><div class="slide-title" style="font-size:clamp(1.7rem,3vw,2.5rem)">Subscription Revenue</div><div class="grid-2" id="c-sub-revenue"></div></div>
+    <div class="slide" id="slide-8"><div class="story-hook"><p>Organisches Wachstum allein reicht nicht. Subscription Growth öffnet Türen, die wir alleine nie erreichen würden, und das im grossen Massstab.</p></div><div class="eyebrow">Team 4 von 6</div><div class="slide-title" style="font-size:clamp(1.7rem,3vw,2.5rem)">Subscription Growth</div><div class="grid-2" id="c-sub-growth"></div></div>
+    <div class="slide" id="slide-9"><div class="story-hook"><p>Ein starkes Produkt verdient auch starke Werbeeinnahmen. Advertising Ops ist der Maschinenraum, der Sales erst richtig schlagkräftig macht.</p></div><div class="eyebrow">Team 5 von 6</div><div class="slide-title" style="font-size:clamp(1.7rem,3vw,2.5rem)">Advertising Operations</div><div class="grid-2" id="c-adv-ops"></div></div>
+    <div class="slide" id="slide-10"><div class="story-hook"><p>Operations schafft die Grundlage, Sales macht den Abschluss. Advertising Sales ist die direkte Verbindung zum Markt, zu den Kunden, zum Umsatz.</p></div><div class="eyebrow">Team 6 von 6</div><div class="slide-title" style="font-size:clamp(1.7rem,3vw,2.5rem)">Advertising Sales</div><div class="grid-2" id="c-adv-sales"></div></div>
+
+    <!-- 11: JETZT -->
+    <div class="slide" id="slide-11">
       <div style="min-height:65vh;display:flex;flex-direction:column;justify-content:center;gap:24px">
         <div class="red-block">
           <div class="eyebrow">Das Fazit</div>
@@ -352,7 +313,7 @@ details.notes-toggle[open] summary::before{content:"▾"}
           <div class="closing-card"><div class="c-num">🎯</div><div class="c-title">Fokus schlägt Breite.</div><div class="c-text">Wir gewinnen nicht, weil wir alles machen. Wir gewinnen, weil wir das Richtige konsequent machen.</div></div>
           <div class="closing-card"><div class="c-num">🏆</div><div class="c-title">Das Ziel ist real.</div><div class="c-text">Das erfolgreichste digitale Bezahlmedium der Schweiz. Das sind wir, wenn wir es jetzt wollen.</div></div>
         </div>
-        <details class="notes-toggle"><summary>Presenter-Notizen</summary><div class="notes-box"><strong>Stichworte</strong>Pause. Nicht eilen. «Der Moment» ist jetzt, in diesem Raum, mit diesen Menschen. Die Stille wirkt.</div></details>
+        <details class="notes-toggle"><summary>Presenter-Notizen</summary><div class="notes-box"><strong>Stichworte</strong>Pause. Nicht eilen. Der Moment ist jetzt, in diesem Raum. Die Stille wirkt.</div></details>
       </div>
     </div>
 
@@ -363,13 +324,14 @@ details.notes-toggle[open] summary::before{content:"▾"}
   <button class="nav-btn secondary" id="btn-prev" disabled>←</button>
   <button class="nav-btn primary" id="btn-next">→</button>
 </div>
-<div class="slide-counter" id="counter">1 / 9</div>
+<div class="slide-counter" id="counter">1 / 12</div>
 <div id="modal-overlay"><div id="modal"><button id="modal-close">✕ Schliessen</button><div id="modal-content"></div></div></div>
 
 <script>
-const TOTAL=9;let cur=0;
+const TOTAL = 12;
+let cur = 0;
 
-const principles=[
+const principles = [
   {n:"01",title:"Schnelle Wirksamkeit",short:"Heute besser statt übermorgen perfekt.",detail:"Wir suchen den nächsten wirksamen Schritt, der jetzt spürbar etwas verbessert."},
   {n:"02",title:"Wirkungsorientierte Entscheidungen",short:"Priorität hat, was direkt Wert schafft.",detail:"Wir entscheiden nach Hebel auf Wachstum, Umsatz und Effizienz, nicht nach Lautstärke oder Gewohnheit."},
   {n:"03",title:"Radikale Verantwortung",short:"Ownership für Resultate, nicht nur Aufgaben.",detail:"Wenn Hürden entstehen oder andere nicht liefern, organisieren wir Lösungen statt Ausreden."},
@@ -378,175 +340,282 @@ const principles=[
   {n:"06",title:"Fokus statt Breite",short:"Energie nur auf Themen mit direkter Hebelwirkung.",detail:"Alles ohne klare Wirkung rutscht bewusst nach hinten oder fällt weg."}
 ];
 
-const statusTeams=[
-  {id:"st-desk",label:"Digital Desk"},
-  {id:"st-rev",label:"Sub. Revenue"},
-  {id:"st-growth",label:"Sub. Growth"},
-  {id:"st-adops",label:"Adv. Ops"}
+const statusTeams = [
+  {id:"s0",label:"Digital Desk"},{id:"s1",label:"Product Mgmt."},
+  {id:"s2",label:"Sub. Revenue"},{id:"s3",label:"Sub. Growth"},
+  {id:"s4",label:"Adv. Ops"},{id:"s5",label:"Adv. Sales"}
 ];
-const statusStates={};
-statusTeams.forEach(t=>{statusStates[t.id]="gray"});
-const statusLabels={gray:"Noch nicht gesetzt",green:"Auf Kurs",yellow:"Aufmerksamkeit",red:"Handlungsbedarf"};
-function renderStatus(){
-  document.getElementById("status-grid").innerHTML=statusTeams.map(t=>`
+const statusStates = {};
+statusTeams.forEach(t => { statusStates[t.id] = "gray"; });
+const statusLabels = {gray:"Noch nicht gesetzt",green:"Auf Kurs",yellow:"Aufmerksamkeit",red:"Handlungsbedarf"};
+function renderStatus() {
+  document.getElementById("status-grid").innerHTML = statusTeams.map(t => `
     <div class="status-card">
       <div class="team-lbl">${t.label}</div>
       <div class="status-dot ${statusStates[t.id]}" onclick="cycleStatus('${t.id}')"></div>
       <div class="status-label">${statusLabels[statusStates[t.id]]}</div>
     </div>`).join("");
 }
-function cycleStatus(id){
-  const o=["gray","green","yellow","red"];
-  statusStates[id]=o[(o.indexOf(statusStates[id])+1)%o.length];
+function cycleStatus(id) {
+  const o = ["gray","green","yellow","red"];
+  statusStates[id] = o[(o.indexOf(statusStates[id])+1)%o.length];
   renderStatus();
 }
 renderStatus();
 
-const teams={
-  "team-digital-desk":{
-    icon:"📡",bg:"rgba(99,102,241,.15)",name:"Digital Desk",
+const teams = {
+  "digital-desk":{
+    icon:"📡", color:"#009667", name:"Digital Desk",
+    claim:"Reichweite und Distribution — der Maschinenraum für Wachstum.",
     role:"Der operative Maschinenraum für Reichweite, Distribution und Engagement. Kein Wachstum ohne Sichtbarkeit, und Sichtbarkeit ist genau diese Aufgabe.",
     vision:"Wir haben unsere Workflows deutlich verschlankt, an Fokus gewonnen und darum entscheidend zur Steigerung von Reichweite und Engagement beigetragen.",
-    discussion:"Welche eine Distributionsmassnahme würde in den nächsten 30 Tagen die grösste Wirkung entfalten?",
-    notes:"Projekt Nova ist der Rahmen. Google und Distribution sind die direkten Hebel jetzt. Was bis Mai messbar ist, zählt.",
+    discussion:"Welche Umstellung an Front oder Angebot hätte die grösste positive Wirkung?",
+    notes:"Google und Distribution sind die direkten Hebel. Social-Umsatz CHF 2 Mio. ist das konkrete Ziel.",
     priorities:[
-      {n:1,title:"Projekt Nova: Digital Desk bis Sept. 2026",desc:"Inhaltserstellung und Workflows innerhalb Editorial neu denken. Viele Berührungspunkte mit dem Desk, weil hier alle Inhalte distribuiert werden.",milestones:["Finalisierung bis Ende Mai","VR Ende Juni"],results:["Projekt liegt vor","Implikationen für Desk erkannt"]},
-      {n:2,title:"Automatisierte KPI-basierte Distribution",desc:"Distributionsaufgaben für 6 Titel sind zeitintensiv und fast alles Handarbeit. Mindestens 2 Schichten automatisieren.",milestones:["Projekt-Aufbau AI/Data bis Mitte April","Projektleitung: Tina Huber"],results:["Mindestens 2 Distributionsschichten ersetzt"]},
-      {n:3,title:"Google Optimization (Discover-Fokus)",desc:"Google-Traffic 2025: +40%. Fokus auf Discover, weil grösserer Hebel und weniger KI-Druck als Search. Gezielt Hypothesen testen.",milestones:["Start bis Mitte April","5 Hypothesen bis Ende April","Auswertung Ende Mai"],results:["Verdoppelung Google-Traffic"]},
-      {n:4,title:"Second-Click-Optimierung",desc:"Datengestützt Inhalte mit Optimierungspotenzial identifizieren. Hypothesen-getrieben, schnell testen. Fokus Artikel, nicht Homepage.",milestones:["Start bis Mitte April","5 Hypothesen bis Ende April"],results:["Pageviews pro Visit +20%"]},
-      {n:5,title:"Social — Neues Redaktions-Team",desc:"Social-Team neu aufstellen, von kommerziellen Aufträgen befreien. Fokus: Conversions. Alle Kanäle nach klaren Kriterien reviewen.",milestones:["Kommunikation Mitte April","Personelle Klarheit Ende April"],results:["Social-Media-Traffic +20%","Link-Posts vollständig vom Desk","Kanal-Review abgeschlossen"]},
-      {n:6,title:"Unterstützung Regio-Pushes",desc:"Subscription Growth bei Regio-Pushes und Limited Product Kampagnen mit Inhalten und Distributionsmassnahmen unterstützen.",milestones:["April: Regio-Push Winterthur"],results:["Winti, Aargau, Schaffhausen, Zug mit definierten Massnahmen unterstützt"]}
+      {n:1,title:"Automatisierte KPI-basierte Distribution",desc:"Distributionsaufgaben für 6 Titel sind zeitintensiv und fast alles Handarbeit. Mindestens 2 Schichten automatisieren.",milestones:["Projekt-Aufbau mit AI/Data bis Mitte April"],results:["Mindestens 2 Distributionsschichten ersetzt"]},
+      {n:2,title:"Google-Traffic verdoppeln",desc:"Mehr Reichweite für Subscription-Funnel und Werbemarkt. Fokus auf Discover, weil grösserer Hebel und weniger KI-Druck als Search.",milestones:["Start bis Mitte April","5 Hypothesen bis Ende April","Auswertung Ende Mai"],results:["Verdoppelung Google-Traffic"]},
+      {n:3,title:"Second-Click-Optimierung",desc:"Datengestützt Inhalte mit Optimierungspotenzial identifizieren und Engagement messbar steigern.",milestones:["Start bis Mitte April","5 Hypothesen bis Ende April"],results:["Pageviews pro Visit +20%"]},
+      {n:4,title:"Social: Neues Setup mit Umsatzziel",desc:"Social-Team neu aufstellen, von kommerziellen Aufträgen befreien. Fokus auf Conversions und Werbeumsatz. Ziel: CHF 2 Mio. Werbeumsatz.",milestones:["Neues Setup April/Mai","Deutliche Steigerung Umsätze im 1. HJ"],results:["CHF 2 Mio. Social-Werbeumsatz","Neues redaktionelles Setup live"]}
     ]},
-  "team-sub-revenue":{
-    icon:"💳",bg:"rgba(16,185,129,.12)",name:"Subscription Revenue",
-    role:"Verwandelt Aufmerksamkeit in Abonnements und Abonnements in Loyalität. Systematische Monetarisierung entlang des gesamten Customer Lifecycle — von der Paywall bis zum Churn.",
+  "product-mgmt":{
+    icon:"🧱", color:"#00c794", name:"Product Management",
+    claim:"Digitale Produkte, die den Wert unserer Inhalte maximal entfalten.",
+    role:"Premium Products entwickelt die digitalen Produkte von Tamedia und stellt sicher, dass sie den Wert unserer Qualitätsinhalte maximal entfalten.",
+    vision:"Wir haben im fünfstelligen Bereich Gains beigesteuert und einen skalierbaren Weg gefunden, diese mit Anschlussangeboten mehrheitlich zu engagen und zu halten.",
+    discussion:"Welche eine Produktverbesserung hätte in den nächsten 60 Tagen den grössten Einfluss auf Conversion oder Retention?",
+    notes:"Plattform-Strategie ist die Grundlage. Podcast Tab und Politbüro sind die ersten sichtbaren Beweise.",
+    priorities:[
+      {n:1,title:"Vision & Roadmap News Product Experience",desc:"Für jede Plattform eine klare Vision: Kernzielgruppen, Rolle im Nutzerleben, was wir konkret bauen. Am Beispiel Tagi, dann Skalierung.",milestones:["Workshop App 2. April","Vision App Ende April","Alle Plattformen Tagi Ende Juni","Skalierung ab Juli"],results:["Vision & Roadmap für alle Plattformen","Podcast Tab live Ende April","Neue visuelle Formate live Mitte Mai"]},
+      {n:2,title:"Launch Limited Products",desc:"Mindestens zwei Limited Products live bringen. Prozess aufbauen: von Idee zu Live in unter 8 Wochen.",milestones:["Rollout & Skalierung Spiele-App April","Launch Politbüro Sommer","Expansion Games Juni","Launch new limited product August"],results:["Politbüro 5'000 neue Abos","Games App 5'000 neue Abos","Mind. 1 weiteres Limited Product live"]},
+      {n:3,title:"Growth Lab Push",desc:"Neue Wege für Reichweite und neue Zielgruppen erkunden. Formate testen, was funktioniert skalieren.",milestones:["Push Games April","Push Podcasts Mai","3 weitere Themen Juni-August"],results:["5'000 neue registrierte User","Mindestens 5 Formate live getestet"]},
+      {n:4,title:"Produktentwicklung beschleunigen",desc:"Continuous Delivery aufbauen — schneller liefern, schneller lernen. Kurze Zyklen zur Norm machen. Referenz: Podcast Tab live in 5 Wochen.",milestones:["Ist-Zustand analysiert April","Erste Prozessanpassungen Mitte April"],results:["3 Features in unter 6 Wochen von Idee bis Live","Neues live, jede Woche sichtbar"]}
+    ]},
+  "sub-revenue":{
+    icon:"💳", color:"#db0038", name:"Subscription Revenue",
+    claim:"Aus Aufmerksamkeit Abonnements machen — systematisch.",
+    role:"Verwandelt Aufmerksamkeit in Abonnements und Abonnements in Loyalität. Systematische Monetarisierung entlang des gesamten Customer Lifecycle.",
     vision:"Wir haben im fünfstelligen Bereich Gains beigesteuert und einen skalierbaren Weg gefunden, diese mit Anschlussangeboten mehrheitlich zu engagen und zu halten.",
     discussion:"Welche Reibung im Checkout kostet uns heute die meisten Conversions, und was können wir sofort entfernen?",
-    notes:"Registration Wall im April ist der wichtigste Schritt des Quartals. Paywall CR von 15% auf 17% ist konkret und erreichbar. Onboarding CR 50% ist der stille Retention-Hebel.",
+    notes:"Registration Wall im April ist der wichtigste Schritt des Quartals. Onboarding ist der stille Retention-Hebel.",
     priorities:[
-      {n:1,title:"Standardisierte Kampagnen für anonyme User",desc:"Fly Bys und Loyal User über Retargeting (Social, Google), Onsite und Mail zu zahlenden Nutzern konvertieren.",milestones:["Politbüro Mai 2026","Podcast Tab Juni 2026"],results:["Conversion Rate Article View zu Purchase erhöht","CTR Performance Marketing erhöht"]},
-      {n:2,title:"Reset Registrierung, Login, Paywall, Checkout",desc:"Registration Wall einführen, um Engagement vor Kaufentscheidung zu erhöhen. Paywall und Checkout optimieren.",milestones:["Registration Wall April 2026","Reset Paywall Mai 2026","Checkout-Optimierung Juni 2026","Landingpages Juli 2026"],results:["Mindestens 1'500 Registrierungen / Monat","Paywall-to-Purchase CR: 15% → 17%"]},
-      {n:3,title:"Onboarding in das Produkt",desc:"In den ersten 30 Tagen Gewohnheiten schaffen, die Retention sichern. Registration und Subscription Journey einführen und optimieren.",milestones:["Registration Onboarding Journey April 2026","Subscription Onboarding Journey Mai 2026"],results:["Registration to Subscription CR: 50%","Churn Rate Reduction: 2%"]}
+      {n:1,title:"Kampagnen für anonyme User",desc:"Fly Bys und Loyal User über Retargeting (Social, Google), Onsite und Mail zu zahlenden Nutzern konvertieren.",milestones:["Laufend ab April"],results:["Conversion Rate erhöht","CTR Performance Marketing erhöht"]},
+      {n:2,title:"Reset Registrierung, Login, Paywall, Checkout",desc:"Registration Wall einführen, um Engagement vor der Kaufentscheidung zu erhöhen. Paywall und Checkout optimieren.",milestones:["Registration Wall April 2026","Reset Paywall Mai 2026","Checkout-Optimierung Juni 2026","Landingpages Juli 2026"],results:["Mehr Registrierungen pro Monat","Paywall-to-Purchase Conversion Rate steigt"]},
+      {n:3,title:"Onboarding in das Produkt",desc:"In den ersten 30 Tagen Gewohnheiten schaffen, die Retention sichern.",milestones:["Registration Onboarding Journey April 2026","Subscription Onboarding Journey Mai 2026"],results:["Registration to Subscription CR steigt","Churn Rate sinkt"]}
     ]},
-  "team-sub-growth":{
-    icon:"🚀",bg:"rgba(245,158,11,.1)",name:"Subscription Growth",
+  "sub-growth":{
+    icon:"🚀", color:"#c5c000", name:"Subscription Growth",
+    claim:"Wachstumssprünge durch Partnerschaften, Regionen und neue Produkte.",
     role:"Öffnet Türen, die kein anderes Team öffnen kann. Partnerschaften, Regionen, neue Produkte — Wachstum im grossen Massstab.",
     vision:"Wir haben im fünfstelligen Bereich Gains beigesteuert und einen skalierbaren Weg gefunden, diese mit Anschlussangeboten mehrheitlich zu engagen und zu halten.",
     discussion:"Welche Partnerschaft hat das grösste Potenzial, und was blockiert uns, sie schneller abzuschliessen?",
     notes:"Partnerschaften sind der grösste Einzelhebel in H1. Regio-Pushes brauchen enge Koordination mit Digital Desk.",
     priorities:[
-      {n:1,title:"Partnerschaften & Kooperationen",desc:"Kooperationen mit B2C-Akteuren in der Schweiz.",milestones:["Coop Mai (2k)","Galaxus Mai (1k)","Sunrise Juni (1k)","Swisscom Juni (1k)"],results:["5 Partnerschaften live","5'000 Netto-Abos, 75% neue User"]},
-      {n:2,title:"Regionale Wachstumsinitiativen",desc:"Premium-Abo in Regionen mit niedriger Streudichte vermarkten.",milestones:["Winti April","Aargau Mai","Schaffhausen Mai","Zug Juni"],results:["5'000 Test-Abos","Streudichte +25%"]},
-      {n:3,title:"Limited Product Kampagnen",desc:"Neue Limited Products mit Werbekampagnen von null auf hundert.",milestones:["Game App Kampagne April","Politbüro Kampagne Juni","Game App Part 2 September"],results:["Game App: 3–5k Solo-Abos","Politbüro: 3–5k Abos"]}
+      {n:1,title:"Partnerschaften & Kooperationen",desc:"Kooperationen mit schweizer Akteuren, die uns Zugang zu grossen Kundenstämmen geben — taktisch oder dauerhaft.",milestones:["Coop Mai (2k)","Galaxus Mai (1k)","Sunrise Juni (1k)","Swisscom Juni (1k)","Senior Partnership Lead Juli"],results:["5 Partnerschaften live","5'000 Netto-Abos, 75% neue User"]},
+      {n:2,title:"Regionale Wachstumsinitiativen",desc:"Premium-Abo sukzessive in Regionen mit niedriger Streudichte vermarkten.",milestones:["Winti April","Aargau Mai","Schaffhausen Mai","Zug Juni","Bern/W-CH Juni/Juli","Weitere TBD September"],results:["5'000 Test-Abos","Streudichte +25% in angegangenen Regionen"]},
+      {n:3,title:"Limited Product Kampagnen",desc:"Neue Limited Products mit Werbekampagnen von null auf hundert wachsen lassen. Ergänzt durch Unterstützung des Digital Desk mit Inhalten und Distribution.",milestones:["Game App Kampagne April","Politbüro Kampagne Sommer","Bern/W-CH Juni/Juli","Game App Part 2 September"],results:["Game App: 3–5k Solo-Abos","Politbüro: 3–5k Abos"]}
     ]},
-  "team-adv-ops":{
-    icon:"📊",bg:"rgba(168,85,247,.1)",name:"Advertising Operations",
+  "adv-ops":{
+    icon:"📊", color:"#ff0050", name:"Advertising Operations",
+    claim:"Der Maschinenraum, der Sales schlagkräftig macht.",
     role:"Macht Sales erst richtig schlagkräftig. Standardisierung, Steuerung und Transparenz, damit der Werbemarkt das liefert, was er kann.",
     vision:"Wir arbeiten datenbasiert, fokussieren uns auf 2–3 Verkaufsansätze gleichzeitig und geben wöchentlich neue Impulse an Sales.",
-    discussion:"Welche 2 Verkaufsansätze haben heute den klarsten ROI, und was sollten wir konsequent stoppen?",
-    notes:"Standardisierung ist die Grundlage für alles. Yield Manager schnellstmöglich besetzen. Playlab bis Ende Juli. Dashboards bis Ende Juni.",
+    discussion:"Was hält uns heute zurück, deutlich mehr Umsatz zu machen?",
+    notes:"Standardisierung ist die Grundlage. Yield Manager schnellstmöglich besetzen.",
     priorities:[
-      {n:1,title:"Standardisierte Vermarktungsunterlagen & Angebotslogik",desc:"Standardisierte Pakete für KMU-Kunden, Print und Digital, die Sales ohne individuellen Aufwand nutzen kann.",milestones:["Digitale KMU-Pakete bis Juni","Print+Digital Kombinationen bis Juni"],results:["Branchenlösungen Spezialmärkte (Immo, Stelle)","Digitale KMU-Pakete mit Print","Reduzierter Produktkatalog"]},
-      {n:2,title:"Yield Management & Erlösbasierte Steuerung",desc:"Belastbare Auslastungssteuerung durch Datenanbindung Playlab. Aktive Inventarsteuerung, Unterscheidung Direct vs. Programmatic.",milestones:["Yield Manager besetzt: schnellstmöglich","Playlab aufgebaut und in Nutzung bis Ende Juli"],results:["Yield Manager benannt","Playlab mit Analysemöglichkeit je Ad Slot live"]},
-      {n:3,title:"Reporting & Qualitätssicherung inkl. Frühwarnsystem",desc:"Regelmässiges, transparentes Reporting über Werbemarkt-Entwicklungen. Dashboards für Sales Management und GL.",milestones:["Annual Agreements Tracking bis Mai","Auslastungssteuerung Print bis Ende Juni","Dashboards finalisiert bis Ende Juni"],results:["Etabliertes Reporting für Sales Management und GL","Monatliche Performance Reviews","Frühwarnsystem für nicht ausgelastete Ausgaben"]},
-      {n:4,title:"KAM: Premium-Angebote für Schlüsselkunden",desc:"Wettbewerbs- und Potenzialanalyse für Grosskunden. Premium-Produktkatalog und individuelle Angebote.",milestones:["Branchen- und Regionalanalyse bis Mitte Mai","Kundenbuchungsanalyse bis Ende Mai","Handlungsempfehlung bis Anfang Juni"],results:["KAM-Ansatz mit Potenzialanalyse operativ","Premium-Produktkatalog definiert","LOM-Kampagnenplanung abgeschlossen"]}
+      {n:1,title:"Standardisierte Vermarktungsunterlagen & Angebotslogik",desc:"Standardisierte Pakete für KMU-Kunden, Print und Digital, die Sales ohne individuellen Aufwand nutzen kann.",milestones:["Digitale KMU-Pakete bis Juni","Print+Digital Kombinationen bis Juni"],results:["Branchenlösungen Spezialmärkte","Digitale KMU-Pakete mit Print","Reduzierter Produktkatalog"]},
+      {n:2,title:"Bessere Nutzung Inventar (Yield Mgmt)",desc:"Erlösbasierte Inventarsteuerung aufbauen und die Rolle des Yield Managers schnellstmöglich besetzen.",milestones:["Analyse IST-Situation und Definition Massnahmen April"],results:["Yield Manager benannt","Erlösbasierte Steuerung operativ"]},
+      {n:3,title:"Reporting & Frühwarnsystem",desc:"Transparentes Reporting über den Werbemarkt. Frühwarnsystem für kritische Entwicklungen.",milestones:["Umsatz-Tracking live bis Mai","Reporting-Dashboards finalisiert bis Juni"],results:["Reporting für Sales Management und GL","Frühwarnsystem live"]},
+      {n:4,title:"KAM: Premium-Angebote für Schlüsselkunden",desc:"Wettbewerbs- und Potenzialanalyse für Grosskunden. Premium-Produktkatalog und individuelle Angebote.",milestones:["Branchen- und Regionalanalyse bis Mitte Mai","Handlungsempfehlung bis Anfang Juni"],results:["Potenzialanalyse operativ","Premium-Produktkatalog definiert"]}
+    ]},
+  "adv-sales":{
+    icon:"📣", color:"#00fac3", name:"Advertising Sales",
+    claim:"Erste Anlaufstelle für Werbung in qualitativ hochwertigen Umfeldern.",
+    role:"Tamedia Advertising ist der wichtigste Partner für Werbung in qualitativ hochwertigen redaktionellen Umfeldern, national und lokal, mit messbarer Wirkung.",
+    vision:"Wir sind mit den Digitalumsätzen auf Budget, die Printumsätze stabilisieren sich unter -5% und wir haben einen skalierbaren Weg gefunden, neue Kunden zu halten.",
+    discussion:"Was hält uns heute zurück, deutlich mehr Umsatz zu machen?",
+    notes:"Kundensegmentierung ist der Schlüssel. Premium-Formate und Social Media sind die Wachstumshebel.",
+    priorities:[
+      {n:1,title:"Fokus auf die richtigen Kunden",desc:"Wir wissen, welche Kunden wir mit welchem Aufwand erfolgreich bewirtschaften — und konzentrieren uns konsequent auf diese.",milestones:["Segmentierung definiert","Fokus-Kunden identifiziert"],results:["Weniger verlorene Kunden","Umsatzsteigerung in fokussierten Segmenten"]},
+      {n:2,title:"Premium-Angebote & Sonderformate",desc:"Laufend neue, innovative Angebote und Formate einführen. Strukturierte Pipeline, auf die sich alle verlassen können.",milestones:["Roadmap neuer Formate erstellt","Laufende Einführung"],results:["Nachhaltiges Wachstum durch neue Angebote","Roadmap mit Einführung neuer Formate"]},
+      {n:3,title:"Social Media & Commercial Content als Wachstumstreiber",desc:"Umsatz mit Social Media Formaten und Commercial Content signifikant steigern.",milestones:["Angebote strukturiert","Launch neuer Formate"],results:["Umsatzsteigerung Social Media","Umsatzsteigerung Commercial Content"]},
+      {n:4,title:"Positionierung & Aussendarstellung",desc:"Erste Anlaufstelle für Werbeplatzierungen in qualitativen Umfeldern und für individuelle Konzepte werden.",milestones:["Positionierung geschärft","Aussendarstellung aktualisiert"],results:["Neukundenquote steigt","Kundenterminquote gesteigert","Umsatzrückgang gestoppt"]}
     ]}
 };
 
-document.getElementById("principles-grid").innerHTML=principles.map(p=>`
-  <div class="card">
+// RENDER PRINCIPLES
+document.getElementById("principles-grid").innerHTML = principles.map((p,i) => `
+  <div class="card principle-card" id="pc-${i}" style="opacity:.25;transition:opacity .4s,transform .4s;transform:translateY(6px)">
+    <div style="font-size:2rem;margin-bottom:10px">${["⚡","🎯","🛡️","🧩","⏱️","✅"][i]}</div>
     <div class="p-num">${p.n}</div>
     <div class="p-title">${p.title}</div>
     <div class="p-short">${p.short}</div>
     <div class="p-detail">${p.detail}</div>
   </div>`).join("");
 
-function renderTeamSlide(cid,tid){
-  const t=teams[tid];
-  document.getElementById(cid).innerHTML=`
+let revealed = 0;
+function revealNext() {
+  if (revealed < principles.length) {
+    const el = document.getElementById("pc-"+revealed);
+    el.style.opacity = "1";
+    el.style.transform = "translateY(0)";
+    revealed++;
+  }
+  if (revealed >= principles.length) {
+    document.getElementById("reveal-btn").disabled = true;
+    document.getElementById("reveal-btn").style.opacity = ".4";
+  }
+}
+function revealAll() {
+  principles.forEach((_,i) => {
+    const el = document.getElementById("pc-"+i);
+    el.style.opacity = "1";
+    el.style.transform = "translateY(0)";
+  });
+  revealed = principles.length;
+  document.getElementById("reveal-btn").disabled = true;
+  document.getElementById("reveal-btn").style.opacity = ".4";
+}
+function resetPrinciples() {
+  principles.forEach((_,i) => {
+    const el = document.getElementById("pc-"+i);
+    el.style.opacity = ".25";
+    el.style.transform = "translateY(6px)";
+  });
+  revealed = 0;
+  document.getElementById("reveal-btn").disabled = false;
+  document.getElementById("reveal-btn").style.opacity = "1";
+}
+
+// RENDER TEAM OVERVIEW
+document.getElementById("teams-overview").innerHTML = Object.entries(teams).map(([key, t]) => `
+  <div class="team-overview-card" style="background:${t.color}">
+    <div class="to-icon">${t.icon}</div>
+    <div class="to-name">${t.name}</div>
+    <div class="to-claim">${t.claim}</div>
+  </div>`).join("");
+
+// RENDER TEAM SLIDES
+function renderTeam(containerId, teamKey) {
+  const t = teams[teamKey];
+  if (!t) { console.error("Team not found:", teamKey); return; }
+  const el = document.getElementById(containerId);
+  if (!el) { console.error("Container not found:", containerId); return; }
+  const isPending = t.priorities.length === 1 && t.priorities[0].title.includes("Erarbeitung");
+  el.innerHTML = `
     <div class="card">
       <div class="team-header">
-        <div class="team-icon" style="background:${t.bg}">${t.icon}</div>
+        <div class="team-icon" style="background:${t.color}20;border:2px solid ${t.color}40">${t.icon}</div>
         <div><div class="team-name">${t.name}</div><div class="team-sub">Team Overview</div></div>
       </div>
       <div class="team-role">${t.role}</div>
-      <div class="team-vision"><div class="team-vision-label">Wenn wir in 6 Monaten erfolgreich sind …</div><p>${t.vision}</p></div>
-      <button class="open-btn" onclick="openModal('${tid}')">Alle Prioritäten & Milestones →</button>
-      <details class="notes-toggle" style="margin-top:16px"><summary>Presenter-Notizen</summary><div class="notes-box"><strong>Stichworte</strong>${t.notes}</div></details>
+      <div class="team-vision">
+        <div class="team-vision-label">Wenn wir in 6 Monaten erfolgreich sind …</div>
+        <p>${t.vision}</p>
+      </div>
+      <button class="open-btn" onclick="openModal('${teamKey}')">Alle Prioritäten & Milestones →</button>
+      <details class="notes-toggle" style="margin-top:16px">
+        <summary>Presenter-Notizen</summary>
+        <div class="notes-box"><strong>Stichworte</strong>${t.notes}</div>
+      </details>
     </div>
     <div class="card">
-      <div style="font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;font-weight:500">Strategische Prioritäten</div>
-      <div class="prio-list">${t.priorities.slice(0,4).map(p=>`
-        <div class="prio"><div class="prio-num">${p.n}</div><div class="prio-text"><strong>${p.title}</strong>${p.milestones.slice(0,2).map(m=>`<div class="prio-milestone">→ ${m}</div>`).join("")}</div></div>
-      `).join("")}</div>
+      <div style="font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:16px">Strategische Prioritäten</div>
+      ${isPending ? `<div class="coming-soon">Prioritäten werden aktuell finalisiert.</div>`
+        : `<div class="prio-list">${t.priorities.map(p => `
+            <div class="prio">
+              <div class="prio-num">${p.n}</div>
+              <div class="prio-text">
+                <strong>${p.title}</strong>
+                ${p.milestones.slice(0,2).map(m => `<div class="prio-milestone">→ ${m}</div>`).join("")}
+              </div>
+            </div>`).join("")}
+          </div>`}
       <div class="discussion-prompt">
         <div class="dp-icon">💬</div>
-        <div><div class="dp-label">Frage an den Raum</div><div class="dp-text">${t.discussion}</div></div>
+        <div>
+          <div class="dp-label">Frage an den Raum</div>
+          <div class="dp-text">${t.discussion}</div>
+        </div>
       </div>
     </div>`;
 }
-["team-digital-desk","team-product-mgmt","team-sub-revenue","team-sub-growth","team-adv-ops"].forEach(id=>renderTeamSlide(id,id));
+renderTeam("c-digital-desk","digital-desk");
+renderTeam("c-product-mgmt","product-mgmt");
+renderTeam("c-sub-revenue","sub-revenue");
+renderTeam("c-sub-growth","sub-growth");
+renderTeam("c-adv-ops","adv-ops");
+renderTeam("c-adv-sales","adv-sales");
 
-function openModal(tid){
-  const t=teams[tid];
-  document.getElementById("modal-content").innerHTML=`
+// MODAL
+function openModal(teamKey) {
+  const t = teams[teamKey];
+  if (!t) return;
+  document.getElementById("modal-content").innerHTML = `
     <div style="margin-bottom:24px">
-      <div style="font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--red);margin-bottom:6px">${t.name}</div>
+      <div style="font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:${t.color};margin-bottom:6px">${t.name}</div>
       <div style="font-size:.95rem;color:var(--muted);line-height:1.65">${t.role}</div>
     </div>
-    <div class="team-vision" style="margin-bottom:24px"><div class="team-vision-label">Wenn wir in 6 Monaten erfolgreich sind …</div><p style="font-size:.92rem">${t.vision}</p></div>
-    ${t.priorities.map(p=>`
+    <div class="team-vision" style="margin-bottom:24px">
+      <div class="team-vision-label">Wenn wir in 6 Monaten erfolgreich sind …</div>
+      <p style="font-size:.92rem">${t.vision}</p>
+    </div>
+    ${t.priorities.map(p => `
       <div class="modal-prio">
         <div class="modal-prio-title">${p.n}. ${p.title}</div>
         <div class="modal-prio-desc">${p.desc}</div>
         <div class="modal-section-label">Messbare Resultate bis September</div>
-        <div class="results-list">${p.results.map(r=>`<div class="result-item">✓ ${r}</div>`).join("")}</div>
+        <div class="results-list">${p.results.map(r => `<div class="result-item">✓ ${r}</div>`).join("")}</div>
         <div class="modal-section-label" style="margin-top:10px">Milestones</div>
-        <div class="milestone-pills">${p.milestones.map(m=>`<span class="mpill">${m}</span>`).join("")}</div>
+        <div class="milestone-pills">${p.milestones.map(m => `<span class="mpill">${m}</span>`).join("")}</div>
       </div>`).join("")}`;
   document.getElementById("modal-overlay").classList.add("open");
 }
-document.getElementById("modal-close").onclick=()=>document.getElementById("modal-overlay").classList.remove("open");
-document.getElementById("modal-overlay").onclick=e=>{if(e.target===document.getElementById("modal-overlay"))document.getElementById("modal-overlay").classList.remove("open")};
+document.getElementById("modal-close").onclick = () => document.getElementById("modal-overlay").classList.remove("open");
+document.getElementById("modal-overlay").onclick = e => {
+  if (e.target === document.getElementById("modal-overlay")) document.getElementById("modal-overlay").classList.remove("open");
+};
 
-function animateFunnels(){
-  document.querySelectorAll(".fstep").forEach((el,i)=>{
+function animateFunnels() {
+  document.querySelectorAll(".fstep").forEach((el,i) => {
     el.classList.remove("visible");
-    setTimeout(()=>el.classList.add("visible"),i*130);
+    setTimeout(() => el.classList.add("visible"), i*130);
   });
 }
 
-function goTo(n){
-  document.querySelectorAll(".slide").forEach(s=>s.classList.remove("active"));
+function goTo(n) {
+  document.querySelectorAll(".slide").forEach(s => s.classList.remove("active"));
   document.getElementById("slide-"+n).classList.add("active");
-  document.querySelectorAll(".sb-item").forEach((el,i)=>el.classList.toggle("active",i===n));
-  document.getElementById("counter").textContent=(n+1)+" / "+TOTAL;
-  document.getElementById("sb-prog-label").textContent="Folie "+(n+1)+" / "+TOTAL;
-  const pct=(n+1)/TOTAL*100;
-  document.getElementById("sb-fill").style.width=pct+"%";
-  document.getElementById("top-fill").style.width=pct+"%";
-  document.getElementById("btn-prev").disabled=n===0;
-  document.getElementById("btn-next").disabled=n===TOTAL-1;
-  if(n===3)setTimeout(animateFunnels,200);
-  cur=n;
+  document.querySelectorAll(".sb-item").forEach((el,i) => el.classList.toggle("active", i===n));
+  document.getElementById("counter").textContent = (n+1)+" / "+TOTAL;
+  document.getElementById("sb-prog-label").textContent = "Folie "+(n+1)+" / "+TOTAL;
+  const pct = (n+1)/TOTAL*100;
+  document.getElementById("sb-fill").style.width = pct+"%";
+  document.getElementById("top-fill").style.width = pct+"%";
+  document.getElementById("btn-prev").disabled = n===0;
+  document.getElementById("btn-next").disabled = n===TOTAL-1;
+  if (n===3) setTimeout(animateFunnels,200);
+  cur = n;
 }
-document.getElementById("btn-next").onclick=()=>{if(cur<TOTAL-1)goTo(cur+1)};
-document.getElementById("btn-prev").onclick=()=>{if(cur>0)goTo(cur-1)};
-document.querySelectorAll(".sb-item").forEach((el,i)=>{el.onclick=()=>goTo(i)});
-document.addEventListener("keydown",e=>{
-  if(document.getElementById("modal-overlay").classList.contains("open")){if(e.key==="Escape")document.getElementById("modal-overlay").classList.remove("open");return;}
-  if(e.key==="ArrowRight"||e.key==="ArrowDown"){if(cur<TOTAL-1)goTo(cur+1)}
-  if(e.key==="ArrowLeft"||e.key==="ArrowUp"){if(cur>0)goTo(cur-1)}
-  if(e.key==="f"||e.key==="F")toggleFullscreen();
-  if(e.key==="s"||e.key==="S")toggleSidebar();
+document.getElementById("btn-next").onclick = () => { if(cur<TOTAL-1) goTo(cur+1); };
+document.getElementById("btn-prev").onclick = () => { if(cur>0) goTo(cur-1); };
+document.querySelectorAll(".sb-item").forEach((el,i) => { el.onclick = () => goTo(i); });
+document.addEventListener("keydown", e => {
+  if (document.getElementById("modal-overlay").classList.contains("open")) {
+    if (e.key==="Escape") document.getElementById("modal-overlay").classList.remove("open");
+    return;
+  }
+  if (e.key==="ArrowRight"||e.key==="ArrowDown") { if(cur<TOTAL-1) goTo(cur+1); }
+  if (e.key==="ArrowLeft"||e.key==="ArrowUp")    { if(cur>0) goTo(cur-1); }
+  if (e.key==="f"||e.key==="F") toggleFullscreen();
+  if (e.key==="s"||e.key==="S") toggleSidebar();
 });
 let isFullscreen=false;
 function toggleFullscreen(){
   isFullscreen=!isFullscreen;
   document.body.classList.toggle("fullscreen",isFullscreen);
   document.getElementById("btn-fullscreen").classList.toggle("active",isFullscreen);
-  if(isFullscreen&&document.documentElement.requestFullscreen)document.documentElement.requestFullscreen().catch(()=>{});
-  else if(!isFullscreen&&document.exitFullscreen)document.exitFullscreen().catch(()=>{});
+  if(isFullscreen&&document.documentElement.requestFullscreen) document.documentElement.requestFullscreen().catch(()=>{});
+  else if(!isFullscreen&&document.exitFullscreen) document.exitFullscreen().catch(()=>{});
 }
 document.getElementById("btn-fullscreen").onclick=toggleFullscreen;
 let sidebarVisible=true;
